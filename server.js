@@ -37,6 +37,14 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())//flash application
+
+//this will add a currentUser to be available in every view
+app.use(function(req,res,next){
+  if(req.user) req.app.locals.currentUser = req.user
+  req.app.locals.loggedIn = !!req.user
+  next()
+})
 
 // ejs configuration
 app.set('view engine', 'ejs')
