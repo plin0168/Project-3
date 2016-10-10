@@ -12,6 +12,12 @@ const
       games: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
       ]
+    },
+    facebook: {
+      id: String,
+      name: String,
+      token: String,
+      email: String
     }
   },
 
