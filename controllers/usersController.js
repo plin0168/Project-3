@@ -3,14 +3,25 @@ var User = require('../models/User.js'),
 
 
 module.exports = {
-  //render the login view
+  //render login view
+  login: function(req, res){
+    res.render('login')
+  },
+
+  createSession: passport.authenticate('local-login', {
+    successRedirect: '/games',
+    failureRedirect: '/'
+  })
+
+
+  //render the signup view
   new: function(req, res){
     res.render('signup')
   },
 
-  create: passport.authenticate('local-login', {
+  createUser: passport.authenticate('local-signup', {
     successRedirect: '/games',
-    failureRedirect: '/'
+    failureRedirect: '/signup'
   })
 
 
