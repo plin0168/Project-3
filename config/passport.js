@@ -19,5 +19,15 @@ passport.deserializeUser(function(id,done){
 
 //local sign-up
 passport.use('local-signup', new LocalStrategy({
-  
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, function(req,email, password, done){
+  User.findOne({'local.email': email}, function(err,user){ //creating error possibility
+    //if there is a problem
+    if(err) return done(err)
+    //check password length
+    if(password.length < 5) return done(null, false, req.flash('signupMessage', 'please make sure your password is more than 5 characters.'))
+    
+  })
 }))
