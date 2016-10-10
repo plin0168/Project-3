@@ -12,11 +12,10 @@ var
 usersRouter.route('/signup')
   .get(usersController.new)
   .post(usersController.create)
-  })
 
   function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
   res.redirect('/games')
 }
 
-  module.exports = usersRouter;
+module.exports = usersRouter;
