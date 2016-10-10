@@ -12,7 +12,7 @@ const
 
           pics: [
             {
-              user: {type: mongoos.Schema.Types.ObjectId, red: 'User'},
+              user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
               url: String
             }
           ]

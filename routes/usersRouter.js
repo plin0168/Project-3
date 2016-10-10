@@ -19,7 +19,7 @@ usersRouter.route('/signup')
 usersRouter.route('/games')
   .get(usersController.show)
 
-userRouter.get('/games', isLoggedIn, function(req, res) {
+usersRouter.get('/games', isLoggedIn, function(req, res) {
     // render the user profile
     res.render('lobby', {user: req.user})
 })

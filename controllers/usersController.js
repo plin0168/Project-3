@@ -8,10 +8,10 @@ module.exports = {
     res.render('login')
   },
 
-  createSession: passport.authenticate('local-login', {
+  createSession: function(){passport.authenticate('local-login', {
     successRedirect: '/games',
     failureRedirect: '/'
-  })
+  })},
 
 
   //render the signup view
@@ -19,10 +19,10 @@ module.exports = {
     res.render('signup')
   },
 
-  createUser: passport.authenticate('local-signup', {
+  createUser: function(){passport.authenticate('local-signup', {
     successRedirect: '/games',
     failureRedirect: '/signup'
-  })
+  })}
 
 
 
