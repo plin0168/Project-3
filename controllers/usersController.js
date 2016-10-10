@@ -11,7 +11,7 @@ module.exports = {
   createSession: passport.authenticate('local-login', {
     successRedirect: '/games',
     failureRedirect: '/'
-  })
+  }),
 
 
   //render the signup view
