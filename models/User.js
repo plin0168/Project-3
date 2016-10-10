@@ -19,3 +19,5 @@ const
 
   // Save the schema as a model
   const User = mongoose.model('User', userSchema)
+
+  module.exports = User
