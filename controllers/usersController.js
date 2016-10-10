@@ -8,10 +8,13 @@ module.exports = {
     res.render('login')
   },
 
-  createSession: function(){passport.authenticate('local-login', {
-    successRedirect: '/games',
-    failureRedirect: '/'
-  })},
+  // createSession: function(){
+  //   passport.authenticate('local-login', {
+  //   successRedirect: '/games',
+  //   failureRedirect: '/'
+  //   }
+  // )},
+
 
 
   //render the signup view
@@ -19,10 +22,10 @@ module.exports = {
     res.render('signup')
   },
 
-  createUser: function(){passport.authenticate('local-signup', {
-    successRedirect: '/games',
-    failureRedirect: '/signup'
-  })}
+  // createUser: function(){passport.authenticate('local-signup', {
+  //   successRedirect: '/games',
+  //   failureRedirect: '/signup'
+  // })}
 
 
 
