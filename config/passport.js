@@ -47,3 +47,21 @@ passport.use('local-signup', new LocalStrategy({
 }))
 
 //creating local log in:
+passport.user('local-login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function(req,email,password,done){
+  //makesure that user exists by searching through DB:
+  User.findOne({'local.email':email}, function(err,user){
+    if(err) return done(err)
+    //no user email found, flash would say so
+    if(!user) { return done (null, falsh)}
+    //passworld invalid
+    if(!user.validPassword(password)) return done(null, false)
+
+    return done(null,user)
+  })
+}))
+
+module.exports = passport
