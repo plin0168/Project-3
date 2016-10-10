@@ -13,8 +13,8 @@ usersRouter.route('/')
   .post(passport.authenticate('local-login', {
   successRedirect: '/games',
   failureRedirect: '/'
-  }
-))
+}))
+
 
 usersRouter.route('/signup')
   .get(usersController.new)
@@ -27,7 +27,6 @@ usersRouter.route('/signup')
 //   .get(usersController.show)
 
 usersRouter.get('/games', isLoggedIn, function(req, res) {
-    // render the user profile
     res.render('lobby', {user: req.user})
 })
 
