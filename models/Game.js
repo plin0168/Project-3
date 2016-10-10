@@ -1,0 +1,34 @@
+const
+  mongoose = require('mongoose')
+
+  // Set schema for games
+    gameSchema = mongoose.Schema({
+      name: {type: String, required: true},
+      users: {},
+      rounds: [
+        {
+          picker: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        // end of picker object
+
+          pics: [
+            {
+              user: {type: mongoos.Schema.Types.ObjectId, red: 'User'},
+              url: String
+            }
+          ]
+
+        }
+      ]
+      // end of rounds array
+      },
+      {
+        timestamps: true
+      }
+      // end of model
+    )
+
+  // Save the schema as a model
+  const Game = mongoose.model('Game', gameSchema)
+
+  // make the model available wherever it is needed
+  module.exports = Game
