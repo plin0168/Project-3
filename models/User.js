@@ -10,8 +10,9 @@ const
       password: {type: String, required: true},
       avatar: String,
       games: [
-        game: {type: mongoose.Schema.Types.ObjectId, ref: 'Game'},
+        {game: {type: mongoose.Schema.Types.ObjectId, ref: 'Game'},
         score: {type: Number, default: 0}
+      }
       ]
     }
   },
