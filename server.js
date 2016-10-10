@@ -11,8 +11,10 @@ var
 	session = require('express-session'),
 	passport = require('passport'),
 	passportConfig = require('./config/passport.js'),
-	userRoutes = require('./routes/users.js'),
+	usersRouter = require('./routes/usersRouter.js'),
+  gamesRouter = require('./routes/gamesRouter.js')
 	User = require('./models/User.js'),
+  Game = require('./models/Game.js'),
   dotenv = require('dotenv').load({silent: true})
 
 
@@ -42,11 +44,11 @@ app.use(ejsLayouts)
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
-	res.render('index')
+	res.render('login')
 })
 
 // all user routes:
-app.use('/', userRoutes)
+app.use('/', usersRouter)
 
 app.listen(port, function(){
 	console.log("Server running on port: ", port)
