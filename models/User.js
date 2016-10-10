@@ -13,6 +13,12 @@ const
         game: {type: mongoose.Schema.Types.ObjectId, ref: 'Game'},
         score: {type: Number, default: 0}
       ]
+    },
+    facebook: {
+      id: String,
+      name: String,
+      token: String,
+      email: String
     }
   },
 
