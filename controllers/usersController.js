@@ -19,7 +19,7 @@ module.exports = {
 
   //render the signup view
   new: function(req, res){
-    res.render('signup')
+    res.render('signup', {message: req.flash('signupMessage')})
   },
 
   // createUser: function(){passport.authenticate('local-signup', {

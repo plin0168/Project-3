@@ -56,7 +56,7 @@ passport.use('local-login', new LocalStrategy({
   User.findOne({'local.email':email}, function(err,user){
     if(err) return done(err)
     //no user email found, flash would say so
-    if(!user) { return done (null, falsh)}
+    if(!user) { return done (null, false)}
     //passworld invalid
     if(!user.validPassword(password)) return done(null, false)
 
