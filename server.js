@@ -1,3 +1,24 @@
+var
+  express = require('express'),
+    app = express(),
+    ejs = require('ejs'),
+    ejsLayouts = require('express-ejs-layouts'),
+    mongoose = require('mongoose'),
+    flash = require('connect-flash'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    passport = require('passport'),
+    passportConfig = require('./config/passport.js'),
+    usersRouter = require('./routes/usersRouter.js'),
+    gamesRouter = require('./routes/gamesRouter.js')
+    User = require('./models/User.js'),
+    Game = require('./models/Game.js'),
+    dotenv = require('dotenv').load({silent: true})
+
+
+
 var port = process.env.PORT || 3000
 
 mongoose.connect('mongodb://localhost/project-3', function(err){
