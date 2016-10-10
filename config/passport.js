@@ -28,6 +28,22 @@ passport.use('local-signup', new LocalStrategy({
     if(err) return done(err)
     //check password length
     if(password.length < 5) return done(null, false, req.flash('signupMessage', 'please make sure your password is more than 5 characters.'))
-    
+    //if email user is taken
+    if(user){
+      console.log("there's already a username");
+      return done(null,false, req.flash('signupMessage', 'This email is already taken. Please check and try again.'))
+    }
+
+    //create newUser is above doesnt happen
+    var newUser = new User()
+    newUser.local.name = req.body.name
+    newUser.local.email = email
+    newUser.local.password = newUser.generateHash(password)
+    newUser.save(function(err){
+      if(err) throw err
+      done(null, newUser)
+    })
   })
 }))
+
+//creating local log in:
