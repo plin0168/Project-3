@@ -28,6 +28,7 @@ usersRouter.route('/signup')
 
 usersRouter.get('/games', isLoggedIn, function(req, res) {
     res.render('lobby', {user: req.user})
+    console.log(req.user);
 })
 
 usersRouter.get('/logout', function(req, res){
