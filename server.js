@@ -30,6 +30,7 @@ mongoose.connect('mongodb://localhost/project-3', function(err){
 })
 
 app.use(logger('dev'))
+app.use(methodOverride('_method'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
