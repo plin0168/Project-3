@@ -51,7 +51,7 @@ User.find({'local.email': {
   }
   gameProps.users.unshift(req.user.id)
   Game.create(gameProps, function(err, game){
-    res.render('new_game', {game: game})
+    res.redirect('/game/' + game.id)
     // end of create function
   })
 })
