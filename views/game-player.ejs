@@ -4,9 +4,13 @@
 
 <p>game: <%=game%></p><br>
 <p>Current user: <%=currentUser%></p><br>
-<p>All users: <%game.users.forEach(function(el){%>
-    <%=el%>
-<%})%></p>
+
+Players: <% game.users.forEach(function(el){ %>
+  <li>
+    <%= el %>
+  </li>
+<% }) %>
+</ul>
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
   Submit a Photo
