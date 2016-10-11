@@ -23,7 +23,7 @@ var
 
 
 
-
+///mongoose
 var port = process.env.PORT || 3000
 var mongoConnectionString = 'mongodb://localhost/passport-authentication'
 
