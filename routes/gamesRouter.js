@@ -26,9 +26,12 @@ gamesRouter.get('/game/:id', function(req, res){
 })
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
-  Game.findByIdAndUpdate(req.params.id, req.params.body, {new:true}, function(err, game){
-    console.log(req.params.body)
-    res.json(game)
+  Game.findById(req.params.id, function(err, game){
+    var currentRound = game.rounds[game.rounds.length - 1]
+    currentRound.pics.push(req.params.body)
+    game.save(function(err, game) {
+      res.json(game)
+    })
   })
 })
 
