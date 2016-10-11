@@ -24,13 +24,13 @@ usersRouter.route('/signup')
     successRedirect: '/games',
     failureRedirect: '/signup'
   }))
-
+//to gamesRouter
 usersRouter.get('/games', isLoggedIn, function(req, res) {
     res.render('lobby', {user: req.user})
     // console.log(req.user);
 })
 
-// Route to create new game
+// Route to create new game,
 usersRouter.post('/games/new', function(req, res){
 
 User.find({'local.email': {
@@ -67,11 +67,33 @@ usersRouter.get('/logout', function(req, res){
      res.redirect('/')
    })
 
+usersRouter.use(isLoggedIn)
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
   res.redirect('/games')
 }
+
+//edit update set-up
+
+
+usersRouter.patch('/profile', function(req,res){
+User.findById(req.user._id, function(err,user){
+    if (err) return console.log(err)
+    for(key in req.body.local){
+      if(req.body.local[key] !="") user.local[key] = req.body.local[key]
+    }
+    user.save(function(err){
+        res.redirect('/games')
+    })
+  })
+})
+//edit update profile  change to '/profile/edit'
+usersRouter.get('/profile/edit', function(req,res){
+  res.render('editProfile', {message: req.flash('editProfileMessage')})
+})
+
+
 
 
 
