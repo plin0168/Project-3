@@ -85,7 +85,8 @@ $('.search').on('click', function(evt){
 /////////////Click photo event////
 var selectedPhoto;
 $('#gallery').on('click', '.photo', function(){
-  
+  selectedPhoto = $(this).text()
+  console.log(selectedPhoto)
 })
 
 </script>
