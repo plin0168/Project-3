@@ -3,7 +3,7 @@
 <h1>This is the Game Page for Non-pickers</h1>
 
 <p>game: <%=game%></p><br>
-<p>Current user: <%=currentUser%></p><br>
+Current User: <p id="userId"><%=currentUser.id%></p><br>
 
 Players: <% game.users.forEach(function(el){ %>
   <li>
@@ -70,8 +70,7 @@ $('#directUrl').on('click', function(){
   $('#dropdownMenu1').text(text)
 })
 
-$('.search').on('click', function(evt){
-      evt.preventDefault();
+$('.search').on('click', function(){
       $('#gallery').html("")
       var word = $('.word').val();
       var html = "";
@@ -89,8 +88,23 @@ $('.search').on('click', function(evt){
 /////////////Click photo event////
 var selectedPhoto;
 $('#gallery').on('click', '.photo', function(){
-  selectedPhoto = $(this).text()
+  selectedPhoto = $(this).attr('src')
   console.log(selectedPhoto)
+  $('#gallery').append('<button id="submitPhoto">Submit</button>')
 })
+
+$('#gallery').on('click', '#submitPhoto', function(){
+
+  $.ajax({
+    method: 'PATCH',
+    url: '/game/<%= game._id %>',
+    contentType: 'application/json',
+    data: JSON.stringify({user: <%=currentUser.id%>, url: selectedPhoto})
+  }).done(function(data){
+    console.log(data)
+  })
+})
+
+
 
 </script>
