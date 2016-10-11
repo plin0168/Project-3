@@ -47,7 +47,8 @@ User.find({'local.email': {
     name: req.body.name,
     users: users.map(function(u) {
       return u._id
-    })
+    }),
+    rounds: {picker: req.user.id}
   }
   gameProps.users.unshift(req.user.id)
   Game.create(gameProps, function(err, game){
