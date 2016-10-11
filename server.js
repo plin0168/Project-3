@@ -65,6 +65,22 @@ app.get('/', function(req,res){
 	res.render('login')
 })
 
+// RANDOM WORD:
+app.get('/words/random', function(req, res) {
+  // res.json({message: "Hello!"})
+  var options = {
+    url: 'https://wordsapiv1.p.mashape.com/words/?partOfspeech=noun&random=true',
+    headers: {
+      'X-Mashape-Key': 'gxMkFG1erWmshT1Nvj55pvq6PXECp1oIakfjsnv6XGfe31xFZf',
+      'Accept': 'application/json'
+    }
+  }
+  request.get(options, function(err, mashapeResponse, mashapeBody) {
+    console.log(JSON.parse(mashapeBody))
+    res.json(JSON.parse(mashapeBody))
+  })
+})
+
 // all user routes and game routes:
 app.use('/', usersRouter, gamesRouter)
 
@@ -85,6 +101,9 @@ app.get('/google/:word', function(req, res){
     // res.json(images)
   })
 })
+
+
+
 /////////////Server/////////////////
 app.listen(port, function(){
 	console.log("Server running on port: ", port)
