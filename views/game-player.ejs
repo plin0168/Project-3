@@ -94,12 +94,13 @@ $('#gallery').on('click', '.photo', function(){
 })
 
 $('#gallery').on('click', '#submitPhoto', function(){
-
+  var data = {user: '<%=currentUser.id%>', url: selectedPhoto}
+  console.log(data);
   $.ajax({
     method: 'PATCH',
-    url: '/game/<%= game._id %>',
+    url: '/game/<%= game._id %>/new_photo',
     contentType: 'application/json',
-    data: JSON.stringify({user: <%=currentUser.id%>, url: selectedPhoto})
+    data: JSON.stringify(data)
   }).done(function(data){
     console.log(data)
   })
