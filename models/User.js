@@ -27,6 +27,7 @@ const
     timestamps: true
   }
 )
+
   // end of model
 
 userSchema.methods.generateHash = function(password){
