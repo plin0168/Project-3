@@ -9,11 +9,23 @@
 
 
     <script type="text/javascript">
+
+      var user = {}
+      user.games = [{
+        game: "gameid",
+        score: 0
+      }]
+
       var game = {}
       var current_user = 'garrett'
       var current_round = 'round1'
       game.name = 'Test Game'
-      game.users = {}
+      game.users = [
+        {user: current_user,
+        score: 0},
+        {user: "david",
+      score: 0}
+      ]
       game.users[current_user] = 0
       game.round = {
         round1: {}

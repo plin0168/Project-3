@@ -30,6 +30,12 @@ usersRouter.get('/games', isLoggedIn, function(req, res) {
     res.render('lobby', {user: req.user})
 })
 
+usersRouter.get('/logout', function(req, res){
+     //destroy the session and redirect to home page
+     req.logout()
+     res.redirect('/')
+   })
+
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
