@@ -1,8 +1,16 @@
 <%# This will be the view that allows the user to enter one of his previously joined games or create a new one%>
 <h1> This is the lobby</h1>
+<a href="/new_game">
+<button id="new-game-btn" type="button">New Game</button>
+</a>
 
-<button type="button">New Game</button>
+
 
 <script type="text/javascript">
-  console.log("script working")
+  // select new game button
+  var $btn = $('#new-game-btn')
+  // register on click for new game button
+  $btn.on('click', function(){
+console.log('click')
+})
 </script>
