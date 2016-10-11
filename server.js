@@ -12,7 +12,7 @@ var
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     usersRouter = require('./routes/usersRouter.js'),
-    gamesRouter = require('./routes/gamesRouter.js')
+    gamesRouter = require('./routes/gamesRouter.js'),
     User = require('./models/User.js'),
     Game = require('./models/Game.js'),
     dotenv = require('dotenv').load({silent: true})
@@ -59,6 +59,8 @@ app.get('/', function(req,res){
 
 // all user routes:
 app.use('/', usersRouter)
+// all games routes
+// app.use('/games', gamesRouter)
 
 app.listen(port, function(){
 	console.log("Server running on port: ", port)
