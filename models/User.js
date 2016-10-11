@@ -11,20 +11,20 @@ const
       avatar: String,
       games: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
-      ]
-    },
+      ]}
+    ,
     facebook: {
       id: String,
       name: String,
       token: String,
       email: String
     }
-  }
-
+  },
   {
     timestamps: true
   }
 )
+
   // end of model
 
 userSchema.methods.generateHash = function(password){
