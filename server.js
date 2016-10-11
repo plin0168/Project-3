@@ -16,7 +16,8 @@ var
     gamesRouter = require('./routes/gamesRouter.js'),
     User = require('./models/User.js'),
     Game = require('./models/Game.js'),
-    dotenv = require('dotenv').load({silent: true})
+    dotenv = require('dotenv').load({silent: true}),
+    methodOverride = require('method-override')
 
 
 
