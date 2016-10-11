@@ -11,20 +11,121 @@
 <%# modal model%>
     <div class="modal hide fade" id="image_modal">
     <div class="modal-body">
+
         <button type="button" class="close" data-dismiss="modal">×</button>
+
         <div class="control-group">
-            <label class="search" for="keyword">Key-word Search :</label>
+            <label class="search" for="keyword">Search : </label>
+
             <div class="controls">
                 <input type="text" class="span6" name="keyword" id="keyword">
             </div>
+
         </div>
+
         <div id="image_canvas" style="width:530px; height:300px"></div>
+
     </div>
+
     <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
         <a href="#" class="btn btn-primary">Submit</a>
     </div>
 
+//////////////////////////////////////
+
+<script type="text/javascript">
+      var myBody = $('body');
+      var loadItems = $('#load-items');
+      var addBtn = $('#add');
+
+      var todoList = $('<ul>', {id: 'todo-list'});
+      myBody.append(todoList);
+//////////////////////////////////////////////////////////
+      loadItems.on('click', function(evt){
+        evt.preventDefault();
+        todoList.html("")
+        var opts = {method: 'get', url: '/items'};
+        var cb = function(dataThatCameBack){
+                    dataThatCameBack.forEach(function(el){
+                      var newItem = $('<li>', {id: el['_id'], class: 'todo-item', text: el['title']});
+                      todoList.append(newItem);
+                      $('#'+el['_id']).append($('<button>', {class: 'remove', text: 'X'}))
+                      $('#'+el['_id']).append($('<button>', {class: 'complete', text: 'Complete'}))
+                    });
+                  };
+        $.ajax(opts)
+         .done(cb);
+      });
+/////////////////////////////////////////////////////////////////////////
+      addBtn.on('click', function(evt){
+        evt.preventDefault();
+        var txt = $('#txt').val();
+
+        console.log(txt)
+        $.ajax({
+          method: 'POST',
+          url: '/add-item',
+          contentType: 'application/json',
+          data: JSON.stringify({title: txt})
+        }).done(function(data){
+          console.log(data);
+          todoList.append($('<li>', {id: data['_id'], class: 'todo-item', text: data.title}))
+          $('#'+data['_id']).append($('<button>', {class: 'remove', text: 'X'}))
+          $('#'+data['_id']).append($('<button>', {class: 'complete', text: 'Complete'}))
+
+        })
+      })
+
+      $('ul').on('click', '.remove' ,function(evt){
+        evt.preventDefault();
+        console.log($(this).parent().attr('id'));
+        var li =  $(this).parent()
+        console.log(li)
+
+        $.ajax({
+          method: 'delete',
+          url: '/item/' + $(event.target).parent().attr('id')
+        }).done(function(){
+          li.remove()
+          console.log("removed item")
+        })
+        // $(this).parent().remove();
+      })
+
+      $('ul').on('click', '.complete' ,function(evt){
+        evt.preventDefault();
+        console.log($(this).parent())
+        var word = $(this).parent()
+        $.ajax({
+          method: 'patch',
+          url: '/item/' + $(event.target).parent().attr('id'),
+          contentType: 'application/json',
+          data: JSON.stringify({done: true})
+        }).done(function(data){
+          if(data.done ==true){
+
+            word.toggleClass('completed')
+          }
+        })
+      })
+
+      $('.search').on('click', function(evt){
+        evt.preventDefault();
+        $('#gallery').html("")
+        var word = $('.word').val();
+        var html = "";
+        $.ajax({
+          method: 'GET',
+          url: '/google/'+ word
+        }).done(function(data){
+          $('#gallery').append(data);
+        })
+      })
+
+
+
+    </script>
 
 
   </body>
