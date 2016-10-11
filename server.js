@@ -65,7 +65,7 @@ app.get('/', function(req,res){
 	res.render('login')
 })
 
-// RANDOM WORD:
+// RANDOM WORD: let's do this
 app.get('/words/random', function(req, res) {
   // res.json({message: "Hello!"})
   var options = {
@@ -95,7 +95,7 @@ app.get('/google/:word', function(req, res){
     console.log(images[0])
     var html ="";
     images.forEach(function(img){
-      html += '<img src="' + img.link + '">'
+      html += '<img class="photo" src="' + img.link + '">'
     })
     res.send(html)
     // res.json(images)
