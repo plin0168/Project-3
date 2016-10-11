@@ -8,7 +8,7 @@ Current User: <p id="userId"><%=currentUser.id%></p><br>
 
 Players: <% game.users.forEach(function(el){ %>
   <li>
-    <%= el %>
+    <%= el.local.name %>
   </li>
 <% }) %>
 </ul>
