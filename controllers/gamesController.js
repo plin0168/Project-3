@@ -6,10 +6,10 @@
 //   new: function(req, res){
 //     res.render('')
 //   },
-
-    show: function(req, res){
-      Game.findById(req.params.id, function(err, game){
-        res.json(game)
-      })
-    }
+    // 
+    // show: function(req, res){
+    //   Game.findById(req.params.id, function(err, game){
+    //     res.json(game)
+    //   })
+    // }
 // }

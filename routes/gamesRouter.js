@@ -11,6 +11,6 @@ var
 //   .post(gamesController.create)
 
 //////////Game view///////////
-
-gamesRouter.route('/game/:id')
-  .get(gamesController.show)
+// 
+// gamesRouter.route('/game/:id')
+//   .get(gamesController.show)
