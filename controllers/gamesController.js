@@ -9,7 +9,9 @@ module.exports = {
 //
     show: function(req, res){
       Game.findById(req.params.id, function(err, game){
-        res.render('game-player', {game: game})
+        if(err) return console.log(err)
+        console.log(game)
+        res.json(game)
       })
     }
 }

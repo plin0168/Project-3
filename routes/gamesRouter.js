@@ -3,7 +3,8 @@ var
   passport = require('passport'),
   gamesRouter = express.Router(),
   gamesController = require('../controllers/gamesController.js'),
-  User = require('../models/Game.js')
+  Game = require('../models/Game.js'),
+  User = require('../models/User.js')
 
 /////////Garrett you can use this to create games////////
 // gamesRouter.route('/games/new')
@@ -12,5 +13,17 @@ var
 //
 // ////////Game view///////////
 //
-gamesRouter.route('/game/:id')
-  .get(gamesController.show)
+gamesRouter.get('/game/:id', function(req, res){
+  console.log("hello")
+  Game.findById(req.params.id, function(err, game){
+    res.render('game-player', {game: game})
+  })
+  // Game.findById(req.params.id, function(err, game){
+  //   if(err) return console.log(err)
+  //   console.log(game)
+  //   res.json(game)
+  // })
+})
+
+
+module.exports = gamesRouter

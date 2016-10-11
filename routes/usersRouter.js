@@ -35,7 +35,9 @@ usersRouter.post('/games/new', function(req, res){
     name: req.body.name,
     users: [req.user.id, req.body.user2email, req.body.user3email, req.body.user4email, req.body.user5email, req.body.user6email]
   }, function(err, game){
-    res.render('new_game', {game: game})
+    res.redirect('/game/'+game.id)
+    // res.render('new_game', {game: game})
+    console.log(game)
   })
 })
 

@@ -61,7 +61,8 @@ app.get('/', function(req,res){
 })
 
 // all user routes:
-app.use('/', usersRouter)
+app.use('/', usersRouter, gamesRouter)
+
 // all games routes
 // app.use('/games', gamesRouter)
 
