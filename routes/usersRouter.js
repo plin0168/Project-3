@@ -4,7 +4,8 @@ var
   passport = require('passport'),
   usersRouter = express.Router(),
   usersController = require('../controllers/usersController.js'),
-  User = require('../models/User.js')
+  User = require('../models/User.js'),
+  Game = require('../models/Game.js')
 
 
 //The root will be the login page which is set up in the server. First route from there will be signup
@@ -23,11 +24,19 @@ usersRouter.route('/signup')
     failureRedirect: '/signup'
   }))
 
-// usersRouter.route('/games')
-//   .get(usersController.show)
-
 usersRouter.get('/games', isLoggedIn, function(req, res) {
     res.render('lobby', {user: req.user})
+    console.log(req.user);
+})
+
+// Route to create new game
+usersRouter.post('/games/new', function(req, res){
+  Game.create({
+    name: req.body.name,
+    users: [req.user.id, req.body.user2email, req.body.user3email, req.body.user4email, req.body.user5email, req.body.user6email]
+  }, function(err, game){
+    res.render('new_game', {game: game})
+  })
 })
 
 usersRouter.get('/logout', function(req, res){

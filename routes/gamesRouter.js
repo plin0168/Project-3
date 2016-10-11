@@ -6,11 +6,11 @@ var
   User = require('../models/Game.js')
 
 /////////Garrett you can use this to create games////////
-// gamesRouter.route('/games/new')
+// gamesRouter.route('/new')
 //   .get(gamesController.new)
 //   .post(gamesController.create)
-
-//////////Game view///////////
-
-gamesRouter.route('/game/:id')
-  .get(gamesController.show)
+//
+// ////////Game view///////////
+//
+// gamesRouter.route('/game/:id')
+//   .get(gamesController.show)

@@ -1,0 +1,7 @@
+<h1>This is the new game page that displays when a game is created.</h1>
+
+Name of game: <%= game.name %>
+<br>
+Players: <% game.users.forEach(function(el){ %>
+  <%= el %>
+<% }) %>
