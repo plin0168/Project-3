@@ -45,6 +45,7 @@ User.find({'local.email': {
   console.log(users);
   var gameProps = {
     name: req.body.name,
+    current_round: 1,
     users: users.map(function(u) {
       return u._id
     }),
