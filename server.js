@@ -17,7 +17,7 @@ var
     User = require('./models/User.js'),
     Game = require('./models/Game.js'),
     dotenv = require('dotenv').load({silent: true}),
-    methodOverride = require('method-override'),
+    // methodOverride = require('method-override'),
     request = require('request')
 
 
@@ -33,7 +33,7 @@ mongoose.connect('mongodb://localhost/project-3', function(err){
 })
 
 app.use(logger('dev'))
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
