@@ -3,8 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>google image search modal</title>
+    <script src="/js/lib/jquery.js"></script>
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
   </head>
   <body>
+
+<%# modal model%>
+    <div class="modal hide fade" id="image_modal">
+    <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div class="control-group">
+            <label class="search" for="keyword">Key-word Search :</label>
+            <div class="controls">
+                <input type="text" class="span6" name="keyword" id="keyword">
+            </div>
+        </div>
+        <div id="image_canvas" style="width:530px; height:300px"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-primary">Submit</a>
+    </div>
+
+
 
   </body>
 </html>
