@@ -9,6 +9,7 @@ var
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     usersRouter = require('./routes/usersRouter.js'),
@@ -20,6 +21,7 @@ var
 
 
 var port = process.env.PORT || 3000
+var mongoConnectionString = 'mongodb://localhost/passport-authentication'
 
 mongoose.connect('mongodb://localhost/project-3', function(err){
   	if(err) return console.log('Cannot connect to Mongo')
@@ -34,7 +36,8 @@ app.use(session({
 	secret: 'gaboom',
 	cookie: {maxAge: 6000000},
 	resave: true,
-	saveUninitialized: false
+	saveUninitialized: false,
+  store: new MongoStore({url: mongoConnectionString})
 }))
 app.use(passport.initialize())
 app.use(passport.session())

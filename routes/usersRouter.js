@@ -33,9 +33,9 @@ usersRouter.get('/games', isLoggedIn, function(req, res) {
 usersRouter.post('/games/new', function(req, res){
   Game.create({
     name: req.body.name,
-    users: req.user.id
+    users: [req.user.id, req.body.user2email, req.body.user3email, req.body.user4email, req.body.user5email, req.body.user6email]
   }, function(err, game){
-    res.json(game)
+    res.render('new_game', {game: game})
   })
 })
 

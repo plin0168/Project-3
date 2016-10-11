@@ -4,7 +4,7 @@ const
   // Set schema for games
     gameSchema = mongoose.Schema({
       name: {type: String, required: true},
-      users: {},
+      users: [],
       rounds: [
         {
           picker: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
