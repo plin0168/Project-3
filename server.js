@@ -16,7 +16,9 @@ var
     gamesRouter = require('./routes/gamesRouter.js'),
     User = require('./models/User.js'),
     Game = require('./models/Game.js'),
-    dotenv = require('dotenv').load({silent: true})
+    dotenv = require('dotenv').load({silent: true}),
+    request = require('request')
+
 
 
 
@@ -53,19 +55,34 @@ app.use(function(req,res,next){
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname +'public'))
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
 	res.render('login')
 })
 
-// all user routes:
+// all user routes and game routes:
 app.use('/', usersRouter, gamesRouter)
 
-// all games routes
-// app.use('/games', gamesRouter)
 
+/////////Google API/////////////
+app.get('/google/:word', function(req, res){
+  console.log("got request")
+  var api = 'https://www.googleapis.com/customsearch/v1?q='+req.params.word+'&num=10&start=1&imgSize=medium&searchType=image&key=AIzaSyChYM1SSXjKvE1789lfK0MGrRJ6YiQn66I&cx=005297847350583354977%3Al2jsixda-rm'
+
+  request.get(api, function(err, googleResponse, googleBody){
+    var images = JSON.parse(googleBody).items
+    console.log(images[0])
+    var html ="";
+    images.forEach(function(img){
+      html += '<img src="' + img.link + '">'
+    })
+    res.send(html)
+    // res.json(images)
+  })
+})
+/////////////Server/////////////////
 app.listen(port, function(){
 	console.log("Server running on port: ", port)
 })
