@@ -79,7 +79,7 @@ app.get('/google/:word', function(req, res){
     console.log(images[0])
     var html ="";
     images.forEach(function(img){
-      html += '<img src="' + img.link + '">'
+      html += '<img class="photo" src="' + img.link + '">'
     })
     res.send(html)
     // res.json(images)
