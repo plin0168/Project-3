@@ -5,7 +5,7 @@
 <p>game: <%=game%></p><br>
 <p>Current user: <%=currentUser%></p><br>
 <p>All users: <%game.users.forEach(function(el){%>
-    <%=el%>
+    <%=el.local.name%>
 <%})%></p>
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
