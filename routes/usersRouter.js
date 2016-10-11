@@ -42,4 +42,13 @@ function isLoggedIn(req, res, next) {
   res.redirect('/games')
 }
 
+
+//routes facebook authenticate
+usersRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+
+usersRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+}))
+
 module.exports = usersRouter;
