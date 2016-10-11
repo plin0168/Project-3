@@ -31,6 +31,7 @@ usersRouter.get('/games', isLoggedIn, function(req, res) {
 
 // Route to create new game
 usersRouter.post('/games/new', function(req, res){
+
   Game.create({
     name: req.body.name,
     users: [req.user.id, req.body.user2email, req.body.user3email, req.body.user4email, req.body.user5email, req.body.user6email]
@@ -50,6 +51,7 @@ function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
   res.redirect('/games')
 }
+
 
 
 //routes facebook authenticate
