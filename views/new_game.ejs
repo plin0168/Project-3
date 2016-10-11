@@ -2,6 +2,11 @@
 
 Name of game: <%= game.name %>
 <br>
+<ul>
+
 Players: <% game.users.forEach(function(el){ %>
-  <%= el %>
+  <li>
+    <%= el %>
+  </li>
 <% }) %>
+</ul>
