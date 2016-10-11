@@ -14,7 +14,6 @@ var
 // ////////Game view///////////
 //
 gamesRouter.get('/game/:id', function(req, res){
-  console.log("hello")
   Game.findById(req.params.id).populate('users').exec(function(err, game){
     res.render('game-player', {game: game})
   })
@@ -28,7 +27,10 @@ gamesRouter.get('/game/:id', function(req, res){
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
   Game.findById(req.params.id, function(err, game){
     var currentRound = game.rounds[game.rounds.length - 1]
-    currentRound.pics.push(req.params.body)
+    console.log("this is req");
+    console.log(req.body);
+    currentRound.pics.push(req.body)
+
     game.save(function(err, game) {
       res.json(game)
     })
