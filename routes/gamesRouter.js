@@ -18,10 +18,8 @@ gamesRouter.get('/game/library')
 
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker").exec(function(err, game){
-<<<<<<< HEAD
     if(err) throw err;
     console.log(game)
-=======
     // logic for stopping player for selecting multiple pictures
     var picId = []
     var pics = game.rounds[game.rounds.length-1].pics
@@ -31,7 +29,6 @@ gamesRouter.get('/game/:id', function(req, res){
     }
     console.log("Console log below:");
     console.log(game.rounds[game.rounds.length-1].pics);
->>>>>>> master
     if(req.user.id == game.rounds[game.rounds.length-1].picker._id){
       res.render('game-picker', {game: game, picId: picId})
       console.log();
