@@ -16,10 +16,30 @@ Players: <% game.users.forEach(function(el){ %>
   </li>
 <% }) %>
 </ul>
+<br>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
-  Submit a Photo
-</button>
+
+<%# Start if statement%>
+Current User id:
+<br>
+<%= currentUser._id %>
+<br>
+Pick id's start here:
+<br>
+<%= picId[0] %>
+
+<% if(String(currentUser._id) == String(picId[0]) ||
+      String(currentUser._id) == String(picId[1]) ||
+      String(currentUser._id) == String(picId[2]) ||
+      String(currentUser._id) == String(picId[3]) ||
+      String(currentUser._id) == String(picId[4])
+      ){}else {%>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
+          Submit a Photo
+        </button>
+
+      <% } %>
+<%# end of if statement%>
 
 <!-- Modal -->
 <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -56,13 +76,6 @@ Players: <% game.users.forEach(function(el){ %>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <script type="text/javascript">
 $('#google').on('click', function(){
@@ -110,6 +123,8 @@ $('#gallery').on('click', '#submitPhoto', function(){
     console.log(data)
   })
 })
+
+
 
 
 
