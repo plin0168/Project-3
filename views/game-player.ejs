@@ -36,7 +36,9 @@ Pick id's start here:
       String(currentUser._id) == String(picId[3]) ||
       String(currentUser._id) == String(picId[4])
       ){}else {%>
-        <% include results %>
+        <%if(game.rounds.length>1){%>
+          <% include results %>
+        <%}%>
         <button type="button" id="submit-photo-button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
           Submit a Photo
         </button>
