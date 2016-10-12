@@ -1,8 +1,21 @@
 <%# View that the Picker sees during the game%>
+<%=game%>
+<h1 id="picker">You are the picker</h1>
 
-<h1 id="picker"><%=user%></h1>
+<%# David's code to get photos%>
+
+<div id="pickerPhotos">
+  <h2>Waiting for Pictures...</h2>
+</div>
 
 
+
+
+
+
+
+
+<%# Phil's code for word generator%>
 <div class="row">
 
   <div class="col-lg-offset-3 col-lg-6">
@@ -25,24 +38,52 @@
 <%# ajax pull for word generator api%>
 <script type="text/javascript">
 
-  console.log("game page working")
-  var $picker = $('#picker')
-  var picker;
+/////////////David's photo logic///////
+console.log('Players: <%=game.users.length-1%>')
+console.log('pics uploaded: <%=game.rounds[game.rounds.length-1].pics.length%>')
+var players = <%=game.users.length-1%>
+var pics = <%=game.rounds[game.rounds.length-1].pics.length%>
 
-Game.c
+if(players == pics){
+  console.log("players equals pics")
+  $('#pickerPhotos').html("")
+  $.ajax({
+    method: 'GET',
+    url: '/game/<%= game._id %>/photos',
+  }).done(function(data){
+    var currentRound = <%=game.rounds.length-1%>
+    data.forEach(function(el){
+      console.log(el.url)
+      $('#pickerPhotos').append('<img src="'+ el.url+ '">')
+    })
+  })
+}
 
-  if(Use)
-
-  $picker.append()
 
 
-  $('.generate').on('click', function(){
-        $.ajax({
-          method: 'GET',
-          url: '/words/random'
-        }).done(function(data){
-          $('#word').append(data);
-        })
-      }
+
+
+
+//////////////////////////////////////
+
+//   console.log("game page working")
+//   var $picker = $('#picker')
+//   var picker;
+//
+// Game.c
+//
+//   if(Use)
+//
+//   $picker.append()
+//
+//
+//   $('.generate').on('click', function(){
+//         $.ajax({
+//           method: 'GET',
+//           url: '/words/random'
+//         }).done(function(data){
+//           $('#word').append(data);
+//         })
+//       }
 
 </script>
