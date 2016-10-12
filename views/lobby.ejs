@@ -69,10 +69,25 @@
     </div>
   </div>
 </div>
+<%# end of modal%>
 
+<%# Start of games list%>
 
-
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <ul>
+      <% games.forEach(function(el){ %>
+        <li>
+          <a href="/game/<%=el._id%>"> <%= el.name %> </a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
 </div>
+
+
+
+
 <div class="row">
 <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
