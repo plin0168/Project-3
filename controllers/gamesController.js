@@ -10,20 +10,17 @@ module.exports = {
 //photo library index
     index: function(req,res){
       // var library;
-      Game.findById(req.params.id,function(err, game){
-        game.rounds.forEach(function(el){
-          var picId = []
-          var pics = game.rounds[game.rounds.length-1].pics
-          for(i=0;i<pics.length; i++){
-            picId.push(pics[i].user)
-          console.log(el.pics);
-          var library = el.pics
-          library.forEach(function(pic){
-            console.log(pic.url)
-          })
-        })
-        res.render('photo-library.ejs', { pic: pic})
+      Game.findById(req.params.id, function(err, game){
+        console.log()
         if(err) throw err
+
+        var pics = []
+        game.rounds.forEach(function(r) {
+            r.pics.forEach(function(p){
+              pics.push(p)
+            })
+          })
+        res.render('photo-library.ejs', {pics: pics})
   })
 },
 

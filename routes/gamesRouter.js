@@ -13,7 +13,7 @@ var
 //
 // ////////Game view///////////
 //
-gamesRouter.get('/game/library')
+gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
 
 gamesRouter.get('/game/:id', function(req, res){
