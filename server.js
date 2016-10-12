@@ -87,12 +87,10 @@ app.use('/', usersRouter, gamesRouter)
 
 /////////Google API/////////////
 app.get('/google/:word', function(req, res){
-  console.log("got request")
   var api = 'https://www.googleapis.com/customsearch/v1?q='+req.params.word+'&num=10&start=1&imgSize=medium&searchType=image&key=AIzaSyChYM1SSXjKvE1789lfK0MGrRJ6YiQn66I&cx=005297847350583354977%3Al2jsixda-rm'
 
   request.get(api, function(err, googleResponse, googleBody){
     var images = JSON.parse(googleBody).items
-    console.log(images[0])
     var html ="";
     images.forEach(function(img){
       html += '<img class="photo" src="' + img.link + '">'
