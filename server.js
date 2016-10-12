@@ -21,7 +21,7 @@ var
     request = require('request')
 
 
-
+console.log(process.env)
 
 ///mongoose
 var port = process.env.PORT || 3000
