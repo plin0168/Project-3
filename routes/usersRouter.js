@@ -26,7 +26,11 @@ usersRouter.route('/signup')
   }))
 //to gamesRouter
 usersRouter.get('/games', isLoggedIn, function(req, res) {
-    res.render('lobby', {user: req.user})
+    Game.find({ 'users': { "$in" : [req.user._id]}}, function(err, games){
+      console.log(games)
+      res.render('lobby', {user: req.user, games: games})
+    });
+
     // console.log(req.user);
 })
 
