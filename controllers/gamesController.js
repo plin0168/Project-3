@@ -7,6 +7,13 @@ module.exports = {
 //     res.render('')
 //   },
 //
+    index: function(req,res){
+      Game.find({},function(err, game){
+    if(err) throw err
+    res.render('photo-library.ejs', {title:"photo library uploads"})
+
+    }
+
     show: function(req, res){
       Game.findById(req.params.id, function(err, game){
         if(err) return console.log(err)
