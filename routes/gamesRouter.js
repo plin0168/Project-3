@@ -14,7 +14,7 @@ var
 // ////////Game view///////////
 //
 gamesRouter.get('/game/:id', function(req, res){
-  Game.findById(req.params.id).populate('users').exec(function(err, game){
+  Game.findById(req.params.id).populate("users rounds.picker").exec(function(err, game){
     if(req.user.id == game.rounds[game.rounds.length-1].picker){
       res.render('game-picker', {game: game})
     } else{

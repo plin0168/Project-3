@@ -1,10 +1,14 @@
 <%# The view that all normal players see during the game%>
 <%# Testing game with id: 57fd224005f68aaf34958380%>
 <h1>This is the Game Page for Non-pickers</h1>
+<h2>The current picker is <%= game.rounds[game.rounds.length - 1].picker.local.name %></h2>
+
+  <%# To drill into the rounds.pics and get the url. save for later%>
+ <%#= game.rounds[game.rounds.length - 1].pics[0].url %>
 
 <p>game: <%=game%></p><br>
 
-Current User: <p id="userId"><%=currentUser.id%></p><br>
+Current User: <p id="userId"><%=currentUser.local.name%></p><br>
 
 Players: <% game.users.forEach(function(el){ %>
   <li>
