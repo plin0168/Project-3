@@ -25,9 +25,9 @@ var
 
 ///mongoose
 var port = process.env.PORT || 3000
-var mongoConnectionString = 'mongodb://localhost/passport-authentication'
+var mongoConnectionString = process.env.MONGO_URL
 
-mongoose.connect('mongodb://localhost/project-3', function(err){
+mongoose.connect(process.env.MONGO_URL, function(err){
   	if(err) return console.log('Cannot connect to Mongo')
   	console.log('Connected to MongoDB. Hell Yeah!')
 })
