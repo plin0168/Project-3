@@ -17,10 +17,15 @@ const
               url: String
             }
           ]
-
+        }
+      ],
+      // end of rounds array
+      winners: [
+        {
+          user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+          url: String
         }
       ]
-      // end of rounds array
       },
       {
         timestamps: true

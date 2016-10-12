@@ -61,8 +61,18 @@ if(players == pics){
 
 $('#pickerPhotos').on('click', '.photosToPick', function(){
   var winner = $(this).attr('user')
+  var pic = $(this).attr('src')
+  var results = {user: winner, url: pic}
   var lastRoundNumber = <%=game.rounds[game.rounds.length-1].round%>
   var data = {round: lastRoundNumber+1, picker: winner, pics: []}
+  $.ajax({
+    method: 'PATCH',
+    url: '/game/<%=game._id%>/winner',
+    contentType: 'application/json',
+    data: JSON.stringify(results)
+  }).done(function(results){
+    console.log(results)
+  })
   $.ajax({
     method: 'PATCH',
     url: '/game/<%=game._id%>/new_round',

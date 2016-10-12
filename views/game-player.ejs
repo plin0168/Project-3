@@ -34,6 +34,7 @@ Pick id's start here:
       String(currentUser._id) == String(picId[3]) ||
       String(currentUser._id) == String(picId[4])
       ){}else {%>
+        <% include results %>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
           Submit a Photo
         </button>
