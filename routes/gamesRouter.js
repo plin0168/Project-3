@@ -61,7 +61,7 @@ gamesRouter.get('/game/:id/photos', function(req, res){
 gamesRouter.patch('/game/:id/new_round', function(req, res){
   Game.findById(req.params.id, function(err, game){
     game.rounds.push(req.body)
-    game.rounds[game.rounds.length -1].word = randomWord[Math.floor((Math.random() * (randomWord.length - 1)) + 1)]
+    game.rounds[game.rounds.length - 1].word = randomWord[Math.floor((Math.random() * (randomWord.length - 1)) + 1)]
     game.save(function(err, game) {
       res.json(game)
     })
