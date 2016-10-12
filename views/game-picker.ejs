@@ -2,7 +2,29 @@
 
 <h1 id="picker"><%=user%></h1>
 
+
+<div class="row">
+
+  <div class="col-lg-offset-3 col-lg-6">
+    <div class="input-group">
+
+      <span class="input-group-btn">
+        <button class="generate" type="button">reload</button>
+      </span>
+      <input id="word" type="text" class="form-control" placeholder="Word generated">
+
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button">submit</button>
+      </span>
+
+    </div>
+  </div>
+</div>
+
+
+<%# ajax pull for word generator api%>
 <script type="text/javascript">
+
   console.log("game page working")
   var $picker = $('#picker')
   var picker;
@@ -12,5 +34,15 @@ Game.c
   if(Use)
 
   $picker.append()
+
+
+  $('.generate').on('click', function(){
+        $.ajax({
+          method: 'GET',
+          url: '/words/random'
+        }).done(function(data){
+          $('#word').append(data);
+        })
+      }
 
 </script>
