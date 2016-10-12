@@ -15,7 +15,11 @@ var
 //
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate('users').exec(function(err, game){
+    if(){
     res.render('game-player', {game: game})
+    } else{
+      res.render('game-player', {game: game})
+    }
   })
   // Game.findById(req.params.id, function(err, game){
   //   if(err) return console.log(err)
@@ -26,12 +30,8 @@ gamesRouter.get('/game/:id', function(req, res){
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
   Game.findById(req.params.id, function(err, game){
-    console.log(req.params.body)
     var currentRound = game.rounds[game.rounds.length - 1]
-    console.log("this is req");
-    console.log(req.body);
     currentRound.pics.push(req.body)
-
     game.save(function(err, game) {
       res.json(game)
     })
