@@ -2,6 +2,7 @@
 <%# Testing game with id: 57fd224005f68aaf34958380%>
 <h1>This is the Game Page for Non-pickers</h1>
 <h2>The current picker is <%= game.rounds[game.rounds.length - 1].picker.local.name %></h2>
+<h3></h3>
 
   <%# To drill into the rounds.pics and get the url. save for later%>
  <%#= game.rounds[game.rounds.length - 1].pics[0].url %>
@@ -35,7 +36,7 @@ Pick id's start here:
       String(currentUser._id) == String(picId[3]) ||
       String(currentUser._id) == String(picId[4])
       ){}else {%>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
+        <button type="button" id="submit-photo-button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
           Submit a Photo
         </button>
 
@@ -71,7 +72,7 @@ Pick id's start here:
 
 
 
-
+        <%# Do we need all these?%>
 
             </div>
           </div>
@@ -120,8 +121,15 @@ $('#gallery').on('click', '#submitPhoto', function(){
     url: '/game/<%= game._id %>/new_photo',
     contentType: 'application/json',
     data: JSON.stringify(data)
-  }).done(function(data){
-    console.log(data)
+  }).done(function(){
+    // to slide modal up out of view
+    $('#photoModal').modal('toggle')
+    // remove submit button from view
+    $('#submit-photo-button').remove()
+    // add message to user that the system is waiting for other players to submit pictures
+    $('h3').text('Waiting for other players to submit pictures.')
+
+
   })
 })
 
