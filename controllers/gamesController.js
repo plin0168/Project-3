@@ -18,8 +18,7 @@ module.exports = {
             console.log(pic.url)
           })
         })
-        res.json(library)
-        res.render('photo-library.ejs', {title:"photo library uploads"})
+        res.render('photo-library.ejs', { pic: pic})
         if(err) throw err
   })
 },

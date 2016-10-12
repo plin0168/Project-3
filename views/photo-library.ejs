@@ -1,8 +1,7 @@
 <h1>Photo Library Uploads</h1>
 
-<div class="photo-library-gallery"></div>
+<% users.forEach(function(u){ %>
+  <h2> <%= u %> </h2>
+<h2> <%= u.pics %></h2>
 
-
-<script type="text/javascript">
-
-</script>
+<% }) %>
