@@ -17,7 +17,7 @@ gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
 
 gamesRouter.get('/game/:id', function(req, res){
-  Game.findById(req.params.id).populate("users rounds.picker").exec(function(err, game){
+  Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
     if(err) throw err;
     console.log(game)
     // logic for stopping player for selecting multiple pictures
@@ -37,11 +37,6 @@ gamesRouter.get('/game/:id', function(req, res){
       console.log();
     }
   })
-  // Game.findById(req.params.id, function(err, game){
-  //   if(err) return console.log(err)
-  //   console.log(game)
-  //   res.json(game)
-  // })
 })
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
@@ -70,6 +65,16 @@ gamesRouter.patch('/game/:id/new_round', function(req, res){
     })
   })
 })
+
+gamesRouter.patch('/game/:id/winner', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    game.winners.push(req.body)
+    game.save(function(err, game) {
+      res.json(game)
+    })
+  })
+})
+
 
 
 module.exports = gamesRouter
