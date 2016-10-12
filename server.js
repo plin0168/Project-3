@@ -71,7 +71,7 @@ app.get('/words/random', function(req, res) {
   var options = {
     url: 'https://wordsapiv1.p.mashape.com/words/?partOfspeech=noun&random=true',
     headers: {
-      'X-Mashape-Key': 'gxMkFG1erWmshT1Nvj55pvq6PXECp1oIakfjsnv6XGfe31xFZf',
+      'X-Mashape-Key': process.env.MASHAPE,
       'Accept': 'application/json'
     }
   }
@@ -87,7 +87,7 @@ app.use('/', usersRouter, gamesRouter)
 
 /////////Google API/////////////
 app.get('/google/:word', function(req, res){
-  var api = 'https://www.googleapis.com/customsearch/v1?q='+req.params.word+'&num=10&start=1&imgSize=medium&searchType=image&key=AIzaSyChYM1SSXjKvE1789lfK0MGrRJ6YiQn66I&cx=005297847350583354977%3Al2jsixda-rm'
+  var api = 'https://www.googleapis.com/customsearch/v1?q='+req.params.word+'&num=9&start=1&imgSize=medium&searchType=image&key='+process.env.GOOGLE_API+'&cx='+process.env.CX
 
   request.get(api, function(err, googleResponse, googleBody){
     var images = JSON.parse(googleBody).items
