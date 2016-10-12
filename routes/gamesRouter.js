@@ -17,8 +17,8 @@ gamesRouter.get('/game/library')
   .get(gamesController.index)
 
 gamesRouter.get('/game/:id', function(req, res){
-  Game.findById(req.params.id).populate('users').exec(function(err, game){
-    if(req.user.id == game.rounds[game.rounds.length-1].picker){
+  Game.findById(req.params.id).populate("users rounds.picker").exec(function(err, game){
+    if(req.user.id == game.rounds[game.rounds.length-1].picker._id){
       res.render('game-picker', {game: game})
     } else{
       res.render('game-player', {game: game})
