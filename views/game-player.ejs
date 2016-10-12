@@ -2,7 +2,7 @@
 <%# Testing game with id: 57fd224005f68aaf34958380%>
 <h1>This is the Game Page for Non-pickers</h1>
 <h2>The current picker is <%= game.rounds[game.rounds.length - 1].picker.local.name %></h2>
-<h3></h3>
+<h3>The word is: <%=  game.rounds[game.rounds.length - 1].word%></h3>
 
   <%# To drill into the rounds.pics and get the url. save for later%>
  <%#= game.rounds[game.rounds.length - 1].pics[0].url %>
