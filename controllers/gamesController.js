@@ -9,9 +9,18 @@ module.exports = {
 
 //photo library index
     index: function(req,res){
-      Game.find({},function(err, game){
-    if(err) throw err
-    res.render('photo-library.ejs', {title:"photo library uploads"})
+      var library;
+      Game.findById(req.params.id,function(err, game){
+        game.rounds.forEach(function(el){
+          console.log(el.pics);
+          library = el.pics
+          library.forEach(function(pic){
+            console.log(pic.url)
+          })
+        })
+        res.json(library)
+        res.render('photo-library.ejs', {title:"photo library uploads"})
+        if(err) throw err
   })
 },
 
