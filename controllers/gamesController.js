@@ -11,7 +11,7 @@ module.exports = {
       Game.find({},function(err, game){
     if(err) throw err
     res.render('photo-library.ejs', {title:"photo library uploads"})
-
+    
     }
 
     show: function(req, res){
