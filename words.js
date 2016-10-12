@@ -1,4 +1,4 @@
-var words =
+const randomWord =
   [
   'Magenta',
   'Hysterical',
@@ -191,4 +191,4 @@ var words =
   'Surprise',
     ]
 
-modules.export = words
+module.exports = randomWord

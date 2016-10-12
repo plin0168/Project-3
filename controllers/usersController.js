@@ -1,11 +1,13 @@
 var User = require('../models/User.js'),
-    passport = require('passport')
+    passport = require('passport'),
+    randomWord = require('../words.js')
 
 
 module.exports = {
   //render login view
   login: function(req, res){
     res.render('login')
+
   },
 
   // createSession: function(){

@@ -1,6 +1,8 @@
 <%# View that the Picker sees during the game%>
 <%=game.rounds%>
 <h1 id="picker">You are the picker</h1>
+<br>
+<h2>The word is: <%=game.rounds[game.rounds.length - 1].word%></h2>
 
 <%# David's code to get photos%>
 
@@ -8,31 +10,6 @@
   <h2>Waiting for Pictures...</h2>
 </div>
 
-
-
-
-
-
-
-
-<%# Phil's code for word generator%>
-<div class="row">
-
-  <div class="col-lg-offset-3 col-lg-6">
-    <div class="input-group">
-
-      <span class="input-group-btn">
-        <button class="generate" type="button">reload</button>
-      </span>
-      <input id="word" type="text" class="form-control" placeholder="Word generated">
-
-      <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button">submit</button>
-      </span>
-
-    </div>
-  </div>
-</div>
 
 
 <%# ajax pull for word generator api%>
