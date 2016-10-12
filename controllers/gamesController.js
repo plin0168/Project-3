@@ -9,11 +9,15 @@ module.exports = {
 
 //photo library index
     index: function(req,res){
-      var library;
+      // var library;
       Game.findById(req.params.id,function(err, game){
         game.rounds.forEach(function(el){
+          var picId = []
+          var pics = game.rounds[game.rounds.length-1].pics
+          for(i=0;i<pics.length; i++){
+            picId.push(pics[i].user)
           console.log(el.pics);
-          library = el.pics
+          var library = el.pics
           library.forEach(function(pic){
             console.log(pic.url)
           })
