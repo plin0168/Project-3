@@ -10,11 +10,12 @@
 <a href="/game/<%=game._id%>/library"><button type="button">Photo Library</button></a>
 
 Players: <% game.users.forEach(function(el){ %>
-  <li class="userName">
-    <%= el.local.name %>
-  </li>
+  <div class="row">
+    <div class="userName">
+      <%= el.local.name %>
+    </div>
+  </div>
 <% }) %>
-</ul>
 <br>
 
 
