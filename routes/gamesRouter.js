@@ -13,8 +13,13 @@ var
 //
 // ////////Game view///////////
 //
+gamesRouter.route('/game/:id/library')
+  .get(gamesController.index)
+
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker").exec(function(err, game){
+    if(err) throw err;
+    console.log(game)
     // logic for stopping player for selecting multiple pictures
     var picId = []
     var pics = game.rounds[game.rounds.length-1].pics
