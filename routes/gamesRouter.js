@@ -49,8 +49,15 @@ gamesRouter.get('/game/:id/photos', function(req, res){
     console.log(currentRound.pics)
     res.json(currentRound.pics)
   })
+})
 
-
+gamesRouter.patch('/game/:id/new_round', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    game.rounds.push(req.body)
+    game.save(function(err, game) {
+      res.json(game)
+    })
+  })
 })
 
 

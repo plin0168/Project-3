@@ -51,13 +51,29 @@ if(players == pics){
     method: 'GET',
     url: '/game/<%= game._id %>/photos',
   }).done(function(data){
-    var currentRound = <%=game.rounds.length-1%>
     data.forEach(function(el){
       console.log(el.url)
-      $('#pickerPhotos').append('<img src="'+ el.url+ '">')
+      $('#pickerPhotos').append('<img class="photosToPick" user="'+el.user+'" src="'+ el.url+ '">')
     })
   })
 }
+
+
+$('#pickerPhotos').on('click', '.photosToPick', function(){
+  var winner = $(this).attr('user')
+  var lastRoundNumber = <%=game.rounds[game.rounds.length-1].round%>
+  var data = {round: lastRoundNumber+1, picker: winner, pics: []}
+  $.ajax({
+    method: 'PATCH',
+    url: '/game/<%=game._id%>/new_round',
+    contentType: 'application/json',
+    data: JSON.stringify(data)
+  }).done(function(data){
+    console.log("Winner is: "+data)
+    window.location.href = '/game/<%=game._id%>'
+  })
+
+})
 
 
 
