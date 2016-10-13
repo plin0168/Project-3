@@ -31,6 +31,7 @@ mongoose.connect(process.env.MONGO_URL, function(err){
 })
 
 app.use(logger('dev'))
+app.use(express.static(__dirname +'/public'))
 app.use(methodOverride('_method'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -57,6 +58,7 @@ app.use(function(req,res,next){
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.static('public'))
+
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
