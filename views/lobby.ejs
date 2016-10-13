@@ -3,10 +3,21 @@
     <%= el.user %>
   <% }) %>
 
+
+
 <h1 class="text-center"><%= user.local.name %>'s Games</h1>
 <br>
 <br>
 <%# Start of games list%>
+
+<div class="text-center">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Create New Game
+  </button>
+
+</div>
+
+<br>
 
 <div class="row">
   <div class="col-sm-12">
@@ -42,12 +53,7 @@
 </div>
 <br>
 <br>
-<div class="text-center">
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Create New Game
-  </button>
 
-</div>
   <br>
 
 </div>
