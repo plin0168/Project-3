@@ -15,7 +15,7 @@ module.exports = {
         if(err) throw err
 
         var pics = []
-        for(var i=0; i<game.rounds.length - 2;i++) {
+        for(var i=0; i<game.rounds.length - 1;i++) {
             game.rounds[i].pics.forEach(function(p){
                 pics.push(p)
             })
