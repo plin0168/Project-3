@@ -6,7 +6,7 @@
 <%# }) %>
 <% pics.forEach(function(p) { %>
   <% if(p && p.url) { %>
-  <img src="<%= p.url %>">
+  <img src="<%= p.url %>" id="<%=p._id %>">
   <% } else { %>
     "no image supplied"
   <% } %>
@@ -19,3 +19,5 @@
   <a href='/game/<%= game._id%>' class="btn btn-primary btn-lg">Go Back to Game</a>
 
 </div>
+
+<%= pics %>

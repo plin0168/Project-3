@@ -15,7 +15,12 @@ const
           pics: [
             {
               user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-              url: String
+              url: String,
+              comment: [
+                {body: {type: String},
+                user: {type: String}
+              }
+              ]
             }
           ]
         }
