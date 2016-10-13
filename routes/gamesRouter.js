@@ -85,6 +85,13 @@ gamesRouter.patch('/game/:id/winner', function(req, res){
   })
 })
 
+gamesRouter.get('/game/:id/members', function(req, res){
+  Game.findById(req.params.id).populate("users").exec(function(err, game){
+    if(err) return console.log(err)
+    res.render('members-page', {game: game})
+  })
+})
+
 
 
 
