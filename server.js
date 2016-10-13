@@ -56,7 +56,7 @@ app.use(function(req,res,next){
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
-app.use(express.static(__dirname +'public'))
+app.use(express.static('public'))
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
