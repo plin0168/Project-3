@@ -31,7 +31,6 @@ gamesRouter.patch('/game/:id/library/newcomment', function(req, res){
   res.json(p)
 })
 
-
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
     if(err) throw err;
@@ -97,6 +96,13 @@ gamesRouter.patch('/game/:id/winner', function(req, res){
     game.save(function(err, game) {
       res.json(game)
     })
+  })
+})
+
+gamesRouter.get('/game/:id/members', function(req, res){
+  Game.findById(req.params.id).populate("users").exec(function(err, game){
+    if(err) return console.log(err)
+    res.render('members-page', {game: game})
   })
 })
 

@@ -1,62 +1,53 @@
 <% include nav %>
 <div class="col-sm-6 col-sm-offset-3">
-  <% games[games.length - 1].winners.forEach(function(el){ %>
-    <%= el.user %>
-  <% }) %>
 
-
-
-<h1 class="text-center"><%= user.local.name %>'s Games</h1>
-<br>
-<br>
+  <h1 class="text-center"><%= user.local.name %>'s Games</h1>
+  <br>
+  <br>
 <%# Start of games list%>
 
-<div class="text-center">
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Create New Game
-  </button>
-
-</div>
-
-<br>
-
-<div class="row">
-  <div class="col-sm-12">
-    <ul class="list-group">
-      <%# start of game info %>
-      <% var winners = [] %>
-      <% games.forEach(function(el){ %>
-        <%= el.winners.users%>
-        <% winners.push(el.winners.users)%>
-
-
-        <li class="list-group-item">
-          <span id="remove-game" class="glyphicon glyphicon-remove icon-arrow-right" aria-hidden="true"></span><a href="/game/<%=el._id%>"> <h4><%= el.name %> | Round: <%= el.rounds.length%></h4></a>
-          <h5>Last move: <%= el.updatedAt%></h5>
-          <hr />
-          <p>
-          <strong>Players:</strong>
-          </p>
-          <ul>
-          <% el.users.forEach(function(ele){ %>
-              <li>
-                <%= ele.local.name %> |
-                Score:
-              </li>
-          <% }) %>
-          </ul>
-
-        </li>
-      <% }) %>
-      <%# end of game info %>
-    </ul>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Create New Game
+    </button>
   </div>
-</div>
-<br>
 <br>
 
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="list-group">
+      <%# start of game info %>
+        <% var winners = [] %>
+        <% games.forEach(function(el){ %>
+          <%= el.winners.users%>
+          <% winners.push(el.winners.users)%>
+
+
+          <li class="list-group-item">
+            <span id="remove-game" class="glyphicon glyphicon-remove icon-arrow-right" aria-hidden="true"></span><a href="/game/<%=el._id%>"> <h4><%= el.name %> | Round: <%= el.rounds.length%></h4></a>
+            <h5>Last move: <%= el.updatedAt%></h5>
+            <hr />
+            <p>
+            <strong>Players:</strong>
+            </p>
+            <ul>
+            <% el.users.forEach(function(ele){ %>
+                <li>
+                  <%= ele.local.name %> |
+                  Score:
+                </li>
+            <% }) %>
+            </ul>
+
+          </li>
+        <% }) %>
+          <%# end of game info %>
+      </ul>
+    </div>
+  </div>
   <br>
-
+  <br>
+  <br>
 </div>
 
 
