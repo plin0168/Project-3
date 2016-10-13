@@ -6,7 +6,7 @@
 <%# }) %>
 <% pics.forEach(function(p) { %>
   <% if(p && p.url) { %>
-  <img src="<%= p.url %>">
+  <img src="<%= p.url %>" id="<%=p._id %>">
   <% } else { %>
     "no image supplied"
   <% } %>

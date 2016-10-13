@@ -30,5 +30,13 @@ module.exports = {
         console.log(game)
         res.json(game)
       })
+    },
+
+    addComment: function(req, res){
+      Game.findById(req.params.id, function(err, game){
+        if(err) return console.log(err);
+        game.
+        res.render('photo-library.ejs', {game: game})
+      })
     }
 }
