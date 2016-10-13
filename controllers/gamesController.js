@@ -33,10 +33,17 @@ module.exports = {
     },
 
     addComment: function(req, res){
-      Game.findById(req.params.id, function(err, game){
-        if(err) return console.log(err);
-        game.
-        res.render('photo-library.ejs', {game: game})
+      Game.findById(req.params.id,function(err, game){
+        game.rounds.forEach(function(r){
+          r.pics.forEach(function(p){
+            if(p._id = req.body.picId){
+              picOfIntent = p
+            }
+          })
+        })
       })
+      console.log(p)
+      res.json(p)
     }
+
 }
