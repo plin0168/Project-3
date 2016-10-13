@@ -11,7 +11,7 @@
       <% games.forEach(function(el){ %>
 
         <li class="list-group-item">
-          <a href="/game/<%=el._id%>"> <h4><%= el.name %> </h4></a>
+          <span id="remove-game" class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href="/game/<%=el._id%>"> <h4><%= el.name %> </h4></a>
           <hr />
           <p>
           <strong>Players:</strong>
@@ -35,7 +35,9 @@
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Create New Game
   </button>
+
 </div>
+  <br>
 
 </div>
 
