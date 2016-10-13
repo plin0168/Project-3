@@ -27,7 +27,7 @@ usersRouter.route('/signup')
   }))
 //to gamesRouter
 usersRouter.get('/games', isLoggedIn, function(req, res) {
-    Game.find({ 'users': { "$in" : [req.user._id]}}, function(err, games){
+    Game.find({ 'users': { "$in" : [req.user._id]}}).populate('users').exec(function(err, games){
       res.render('lobby', {user: req.user, games: games})
     });
 

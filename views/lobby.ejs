@@ -1,9 +1,44 @@
-<%# This will be the view that allows the user to enter one of his previously joined games or create a new one%>
-<h1> This is the game lobby for <%= user.local.name %></h1>
+<div class="col-sm-6 col-sm-offset-3">
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Create New Game
-</button>
+<h1 class="text-center"><%= user.local.name %>'s Games</h1>
+<br>
+<br>
+<%# Start of games list%>
+
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <% games.forEach(function(el){ %>
+
+        <li class="list-group-item">
+          <a href="/game/<%=el._id%>"> <h4><%= el.name %> </h4></a>
+          <hr />
+          <p>
+          <strong>Players:</strong>
+          </p>
+          <ul>
+          <% el.users.forEach(function(ele){ %>
+              <li>
+                <%= ele.local.name %>
+              </li>
+          <% }) %>
+          </ul>
+
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+<div class="text-center">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Create New Game
+  </button>
+</div>
+
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -70,37 +105,6 @@
   </div>
 </div>
 <%# end of modal%>
-
-<%# Start of games list%>
-
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <ul>
-      <% games.forEach(function(el){ %>
-        <li>
-          <a href="/game/<%=el._id%>"> <%= el.name %> </a>
-        </li>
-      <% }) %>
-    </ul>
-  </div>
-</div>
-
-
-
-
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3">
-    <div class="well">
-        <p>
-            <strong>Name</strong>: <%= user.local.name %><br>
-            <strong>id</strong>: <%= user._id %><br>
-            <strong>email</strong>: <%= user.local.email %><br>
-            <strong>password</strong>: <%= user.local.password %>
-        </p>
-    </div>
-</div>
-</div>
-
 
 
 
