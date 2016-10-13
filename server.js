@@ -21,8 +21,6 @@ var
     request = require('request')
 
 
-console.log(process.env)
-
 ///mongoose
 var port = process.env.PORT || 3000
 var mongoConnectionString = process.env.MONGO_URL
@@ -33,6 +31,7 @@ mongoose.connect(process.env.MONGO_URL, function(err){
 })
 
 app.use(logger('dev'))
+app.use(express.static(__dirname +'/public'))
 app.use(methodOverride('_method'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -58,27 +57,13 @@ app.use(function(req,res,next){
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
-app.use(express.static(__dirname +'public'))
+app.use(express.static('public'))
+
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
-	res.render('login')
-})
-
-// RANDOM WORD: let's do this
-app.get('/words/random', function(req, res) {
-  // res.json({message: "Hello!"})
-  var options = {
-    url: 'https://wordsapiv1.p.mashape.com/words/?partOfspeech=noun&random=true',
-    headers: {
-      'X-Mashape-Key': process.env.MASHAPE,
-      'Accept': 'application/json'
-    }
-  }
-  request.get(options, function(err, mashapeResponse, mashapeBody) {
-    console.log(JSON.parse(mashapeBody))
-    res.json(JSON.parse(mashapeBody))
-  })
+  if (req.app.locals.loggedIn){res.redirect('/games')}
+  else{res.render('login')}
 })
 
 // all user routes and game routes:

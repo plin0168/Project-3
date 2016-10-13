@@ -6,7 +6,8 @@ var
   usersController = require('../controllers/usersController.js'),
   User = require('../models/User.js'),
   Game = require('../models/Game.js'),
-  mongodClient = require('mongod')
+  mongodClient = require('mongod'),
+  randomWord = require('../words.js')
 
 
 //The root will be the login page which is set up in the server. First route from there will be signup
@@ -26,8 +27,7 @@ usersRouter.route('/signup')
   }))
 //to gamesRouter
 usersRouter.get('/games', isLoggedIn, function(req, res) {
-    Game.find({ 'users': { "$in" : [req.user._id]}}, function(err, games){
-      console.log(games)
+    Game.find({ 'users': { "$in" : [req.user._id]}}).populate('users').exec(function(err, games){
       res.render('lobby', {user: req.user, games: games})
     });
 
@@ -53,7 +53,7 @@ User.find({'local.email': {
     users: users.map(function(u) {
       return u._id
     }),
-    rounds: {picker: req.user.id, round: 1}
+    rounds: {picker: req.user.id, round: 1, word: randomWord[Math.floor((Math.random() * (randomWord.length - 1)) + 1)]}
   }
   gameProps.users.unshift(req.user.id)
   Game.create(gameProps, function(err, game){

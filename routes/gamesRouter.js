@@ -4,7 +4,8 @@ var
   gamesRouter = express.Router(),
   gamesController = require('../controllers/gamesController.js'),
   Game = require('../models/Game.js'),
-  User = require('../models/User.js')
+  User = require('../models/User.js'),
+  randomWord = require('../words')
 
 /////////Garrett you can use this to create games////////
 // gamesRouter.route('/games/new')
@@ -38,6 +39,14 @@ gamesRouter.get('/game/:id', function(req, res){
     }
   })
 })
+// Why doesn't this work!!!!!
+// gamesRouter.delete('/game/:id', function(req, res){
+//   console.log(req.params.id);
+//   Game.findByIdAndRemove({req.params.id}, function(err, game){
+//     res.json(game)
+//   })
+// })
+
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
   Game.findById(req.params.id, function(err, game){
@@ -60,6 +69,7 @@ gamesRouter.get('/game/:id/photos', function(req, res){
 gamesRouter.patch('/game/:id/new_round', function(req, res){
   Game.findById(req.params.id, function(err, game){
     game.rounds.push(req.body)
+    game.rounds[game.rounds.length - 1].word = randomWord[Math.floor((Math.random() * (randomWord.length - 1)) + 1)]
     game.save(function(err, game) {
       res.json(game)
     })
@@ -74,6 +84,7 @@ gamesRouter.patch('/game/:id/winner', function(req, res){
     })
   })
 })
+
 
 
 

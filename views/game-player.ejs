@@ -1,34 +1,23 @@
 <%# The view that all normal players see during the game%>
 <%# Testing game with id: 57fd224005f68aaf34958380%>
-<h1>This is the Game Page for Non-pickers</h1>
-<h2>The current picker is <%= game.rounds[game.rounds.length - 1].picker.local.name %></h2>
-<h3></h3>
+<h2 class="text-center"><%=game.name%></h1>
+<h3 class="text-center"><%= game.rounds[game.rounds.length - 1].picker.local.name %> is the Picker</h2>
+<h1 class="text-center gameWord"><%=game.rounds[game.rounds.length - 1].word%></h1>
 
   <%# To drill into the rounds.pics and get the url. save for later%>
  <%#= game.rounds[game.rounds.length - 1].pics[0].url %>
 
-<p>game: <%=game%></p><br>
-<a href="/game/<%=game._id%>/library"><button type="button">Photo Library</button></a>
-
-Current User: <p id="userId"><%=currentUser.local.name%></p><br>
-
-Players: <% game.users.forEach(function(el){ %>
-  <li>
-    <%= el.local.name %>
-  </li>
+<div class="row text-center">
+  <% game.users.forEach(function(el){ %>
+    <div class="userName">
+      <%= el.local.name %>
+    </div>
 <% }) %>
-</ul>
+</div>
 <br>
 
 
 <%# Start if statement%>
-Current User id:
-<br>
-<%= currentUser._id %>
-<br>
-Pick id's start here:
-<br>
-<%= picId[0] %>
 
 <% if(String(currentUser._id) == String(picId[0]) ||
       String(currentUser._id) == String(picId[1]) ||
@@ -36,13 +25,25 @@ Pick id's start here:
       String(currentUser._id) == String(picId[3]) ||
       String(currentUser._id) == String(picId[4])
       ){}else {%>
-        <% include results %>
-        <button type="button" id="submit-photo-button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#photoModal">
-          Submit a Photo
-        </button>
+        <%if(game.rounds.length>1){%>
+          <% include results %>
+        <%}%>
+        <div class="text-center">
+          <button type="button" id="submit-photo-button" class="btn btn-primary btn-lg text-center" data-toggle="modal" data-target="#photoModal">
+            Submit a Photo
+          </button>
+        </div>
 
       <% } %>
 <%# end of if statement%>
+<div class="col-md-1">
+  <a href="/game/<%=game._id%>/library">
+    <img src="/images/library-icon-2.png" class="icon"><br>
+  </a>
+  <p>Photos</p>
+</div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -50,12 +51,12 @@ Pick id's start here:
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">Search</h4>
+        <%# <h4 class="modal-title" id="gridSystemModalLabel">Search</h4>%>
 
         <%# Search Section%>
 
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle text-center" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <button class="btn findImg btn-default dropdown-toggle text-center" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Find Image
             <span class="caret"></span>
           </button>
@@ -64,7 +65,7 @@ Pick id's start here:
             <li id="directUrl" class="dropdown-toggle">URL</li>
           </ul>
           <input class="word"type="text" name="name" value=""></input>
-          <button class="search">Find</button><br>
+          <button class="search btn btn-sm btn-primary">Search</button><br>
         </div>
 
       </div>
@@ -103,7 +104,7 @@ $('.search').on('click', function(){
         $('#gallery').append(data);
       })
     } else if ($('#dropdownMenu1').text()=="URL") {
-      $('#gallery').append('<img src="'+word + '">' )
+      $('#gallery').append('<img class="col-md-4" src="'+word + '">' )
       }
     })
 /////////////Click photo event////

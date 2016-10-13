@@ -15,12 +15,12 @@ module.exports = {
         if(err) throw err
 
         var pics = []
-        game.rounds.forEach(function(r) {
-            r.pics.forEach(function(p){
-              pics.push(p)
+        for(var i=0; i<game.rounds.length - 2;i++) {
+            game.rounds[i].pics.forEach(function(p){
+                pics.push(p)
             })
-          })
-        res.render('photo-library.ejs', {pics: pics})
+          }
+        res.render('photo-library.ejs', {pics: pics, game: game})
   })
 },
 
