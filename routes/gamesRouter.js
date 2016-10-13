@@ -17,6 +17,7 @@ var
 gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
 
+
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
     if(err) throw err;
