@@ -78,7 +78,7 @@ usersRouter.use(isLoggedIn)
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
-  res.redirect('/games')
+  res.redirect('/')
 }
 
 //edit update set-up

@@ -9,7 +9,8 @@ body{
 }
 .userName{
   display: inline-block;
-  padding: 10px 50px;
+  /*padding: 10px 50px;*/
+  width: 16.67%;
 }
 .gameWord{
   padding: 100px 0px;
@@ -20,8 +21,13 @@ body{
   height: 40px;
 }
 
-.photo{
+.photoWidth{
   width: 33.3%;
+}
+.photoWidth:hover{
+  cursor: pointer;
+  border: solid 1px #CCC;
+  box-shadow: 1px 1px 5px #999;
 }
 .word{
   width: 300px;
@@ -30,6 +36,22 @@ body{
   height: 30px;
   width: 100px;
 }
+.photosToPick{
+  width:16.67%;
+  transition: 0.2s;
+}
+.photosToPick:hover{
+  cursor: pointer;
+  width: 30%;
+  height: 30%;
+  border: solid 1px #CCC;
+  box-shadow: 1px 1px 5px #999;
+}
+.green{
+  color: green;
+}
+
+
 
 @media screen and (max-width: 1090px) {
   .userName{
