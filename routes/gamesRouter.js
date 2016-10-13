@@ -39,6 +39,14 @@ gamesRouter.get('/game/:id', function(req, res){
     }
   })
 })
+// Why doesn't this work!!!!!
+// gamesRouter.delete('/game/:id', function(req, res){
+//   console.log(req.params.id);
+//   Game.findByIdAndRemove({req.params.id}, function(err, game){
+//     res.json(game)
+//   })
+// })
+
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
   Game.findById(req.params.id, function(err, game){
@@ -76,6 +84,7 @@ gamesRouter.patch('/game/:id/winner', function(req, res){
     })
   })
 })
+
 
 
 
