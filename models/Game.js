@@ -9,6 +9,7 @@ const
       rounds: [
         { round: Number,
           picker: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+          word: String,
         // end of picker object
 
           pics: [
