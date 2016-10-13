@@ -1,18 +1,12 @@
-<h1 class="text-center">Member's Page</h1>
+<h1 class="text-center">Members</h1>
 
-<button type="button" name="Add Members"> Add Members</button> <br>
-
-<div class="members-list">
-
-<% pics.forEach(function(p) { %>
-  <% if(p && p.url) { %>
-  <img src="<%= p.url %>">
-  <% } else { %>
-    "no image supplied"
-  <% } %>
-<% }) %>
-
-
+<button type="button"> Add Members</button> <br>
+<div class="text-center">
+  <%game.users.forEach(function(u){%>
+    <div class="userName">
+      <%=u.local.name%>
+    </div>
+  <%})%>
 </div>
 
 <script type="text/javascript">
