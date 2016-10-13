@@ -74,6 +74,14 @@ usersRouter.get('/logout', function(req, res){
      res.redirect('/')
    })
 
+//routes facebook authenticate
+usersRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+
+usersRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
+   successRedirect: '/games',
+   failureRedirect: '/'
+}))
+
 usersRouter.use(isLoggedIn)
 
 function isLoggedIn(req, res, next) {
@@ -104,12 +112,5 @@ usersRouter.get('/profile/edit', function(req,res){
 
 
 
-//routes facebook authenticate
-usersRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
-
-usersRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/games',
-    failureRedirect: '/'
-}))
 
 module.exports = usersRouter;
