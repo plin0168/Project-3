@@ -21,8 +21,6 @@ var
     request = require('request')
 
 
-console.log(process.env)
-
 ///mongoose
 var port = process.env.PORT || 3000
 var mongoConnectionString = process.env.MONGO_URL
@@ -76,7 +74,6 @@ app.get('/words/random', function(req, res) {
     }
   }
   request.get(options, function(err, mashapeResponse, mashapeBody) {
-    console.log(JSON.parse(mashapeBody))
     res.json(JSON.parse(mashapeBody))
   })
 })
