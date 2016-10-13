@@ -9,8 +9,7 @@ body{
 }
 .userName{
   display: inline-block;
-  /*padding: 10px 50px;*/
-  width: 16.67%;
+  width: 16.66%;
 }
 .gameWord{
   padding: 100px 0px;
