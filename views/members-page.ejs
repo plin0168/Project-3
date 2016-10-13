@@ -1,0 +1,24 @@
+<h1 class="text-center">Member's Page</h1>
+
+<button type="button" name="Add Members"> Add Members</button> <br>
+
+<div class="members-list">
+
+<% pics.forEach(function(p) { %>
+  <% if(p && p.url) { %>
+  <img src="<%= p.url %>">
+  <% } else { %>
+    "no image supplied"
+  <% } %>
+<% }) %>
+
+
+</div>
+
+<script type="text/javascript">
+
+
+
+
+
+</script>
