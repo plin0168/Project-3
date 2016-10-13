@@ -17,10 +17,10 @@ module.exports = {
         var pics = []
         game.rounds.forEach(function(r) {
             r.pics.forEach(function(p){
-              pics.push(p)
+                pics.push(p)
             })
           })
-        res.render('photo-library.ejs', {pics: pics})
+        res.render('photo-library.ejs', {pics: pics, game: game})
   })
 },
 

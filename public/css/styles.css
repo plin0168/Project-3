@@ -1,9 +1,38 @@
-img{
-  width: 200px;
-  height: 200px;
+body{
+  background: url('/images/background-gradient.jpg');
+  background-size: cover;
+}
+.login{
+  background: white;
+  border: 10px solid black;
+  border-radius: 40px;
+}
+.userName{
+  display: inline-block;
+  padding: 10px 50px;
+}
+.gameWord{
+  padding: 100px 0px;
 }
 
-body{
-  background: black;
-  color: white;
+.icon{
+  width:40px;
+  height: 40px;
+}
+
+.photo{
+  width: 33.3%;
+}
+.word{
+  width: 300px;
+}
+.findImg{
+  height: 30px;
+  width: 100px;
+}
+
+@media screen and (max-width: 1090px) {
+  .userName{
+    padding: 10px 20px;
+  }
 }
