@@ -5,9 +5,9 @@ const
 // Set schema for users
   userSchema = mongoose.Schema({
     local: {
-      name: {type: String, required: true},
-      email: {type: String, required: true, unique: true},
-      password: {type: String, required: true},
+      name: {type: String},
+      email: {type: String, unique: true},
+      password: {type: String},
       avatar: String,
       games: [
         {game: {type: mongoose.Schema.Types.ObjectId, ref: 'Game'},
