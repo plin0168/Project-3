@@ -60,22 +60,8 @@ app.use(express.static('public'))
 
 //root route for now. Later can change it to the game page
 app.get('/', function(req,res){
-	res.render('login')
-})
-
-// RANDOM WORD: let's do this
-app.get('/words/random', function(req, res) {
-  // res.json({message: "Hello!"})
-  var options = {
-    url: 'https://wordsapiv1.p.mashape.com/words/?partOfspeech=noun&random=true',
-    headers: {
-      'X-Mashape-Key': process.env.MASHAPE,
-      'Accept': 'application/json'
-    }
-  }
-  request.get(options, function(err, mashapeResponse, mashapeBody) {
-    res.json(JSON.parse(mashapeBody))
-  })
+  if (req.app.locals.loggedIn){res.redirect('/games')}
+  else{res.render('login')}
 })
 
 // all user routes and game routes:
