@@ -1,19 +1,38 @@
 <%# View that the Picker sees during the game%>
-<%=game.rounds%>
-<h1 id="picker">You are the picker</h1>
-<br>
-<h2>The word is: <%=game.rounds[game.rounds.length - 1].word%></h2>
+<% include game_nav %>
+<div class="container">
+  <h4 class="text-center"><%=game.name%></h4>
+  <h2 id="picker" class="text-center">You are the Picker</h2>
+  <h1 class="text-center"><%=game.rounds[game.rounds.length - 1].word%></h1>
 
-<%# David's code to get photos%>
+  <%# David's code to get photos%>
 
-<div id="pickerPhotos">
-  <h2>Waiting for Pictures...</h2>
+  <div id="pickerPhotos" class="text-center">
+    <h2 class="gameWord">Waiting for Pictures...</h2>
+  </div>
+
+  <div class="row text-center">
+    <% game.users.forEach(function(el){ %>
+      <div class="userName">
+        <span class="glyphicon glyphicon-ok"></span><br>
+        <%= el.local.name %>
+      </div>
+  <% }) %>
+  </div>
+
+  <div class="col-md-1">
+    <a href="/game/<%=game._id%>/library">
+      <img src="/images/library-icon-2.png" class="icon"><br>
+    </a>
+    <p>Photos</p>
+  </div>
 </div>
 
 
 
 <%# ajax pull for word generator api%>
 <script type="text/javascript">
+var socket = io()
 
 /////////////David's photo logic///////
 console.log('Players: <%=game.users.length-1%>')
@@ -34,6 +53,8 @@ if(players == pics){
     })
   })
 }
+
+
 
 
 $('#pickerPhotos').on('click', '.photosToPick', function(){
@@ -61,32 +82,5 @@ $('#pickerPhotos').on('click', '.photosToPick', function(){
   })
 
 })
-
-
-
-
-
-
-//////////////////////////////////////
-
-//   console.log("game page working")
-//   var $picker = $('#picker')
-//   var picker;
-//
-// Game.c
-//
-//   if(Use)
-//
-//   $picker.append()
-//
-//
-//   $('.generate').on('click', function(){
-//         $.ajax({
-//           method: 'GET',
-//           url: '/words/random'
-//         }).done(function(data){
-//           $('#word').append(data);
-//         })
-//       }
 
 </script>
