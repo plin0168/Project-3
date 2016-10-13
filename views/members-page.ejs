@@ -1,31 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Member's Page</title>
-    <script src="/js/lib/jquery.js"></script>
-    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+<h1 class="text-center">Member's Page</h1>
 
-  </head>
+<button type="button" name="Add Members"> Add Members</button> <br>
 
-  <body>
-    <h1 class="text-center">Member's Page</h1>
+<div class="members-list">
 
-    <button type="button" name="Add Members"> Add Members</button>
+<% pics.forEach(function(p) { %>
+  <% if(p && p.url) { %>
+  <img src="<%= p.url %>">
+  <% } else { %>
+    "no image supplied"
+  <% } %>
+<% }) %>
 
-    <div class="control-group">
-        <label class="search" for="keyword">Search : </label>
 
-        <div class="controls">
-            <input type="text" class="span6" name="keyword" id="keyword">
-        </div>
-
-    </div>
-
-    <div id="image_canvas" style="width:530px; height:300px"></div>
+</div>
 
 <script type="text/javascript">
 
+
+
+
+
 </script>
-  </body>
-</html>
