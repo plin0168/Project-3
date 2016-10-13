@@ -30,20 +30,6 @@ module.exports = {
         console.log(game)
         res.json(game)
       })
-    },
-
-    addComment: function(req, res){
-      Game.findById(req.params.id,function(err, game){
-        game.rounds.forEach(function(r){
-          r.pics.forEach(function(p){
-            if(p._id = req.body.picId){
-              picOfIntent = p
-            }
-          })
-        })
-      })
-      console.log(p)
-      res.json(p)
     }
 
 }

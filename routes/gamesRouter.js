@@ -16,7 +16,21 @@ var
 //
 gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
-  .patch(gamesController.addComment)
+
+gamesRouter.patch('/game/:id/library/newcomment', function(req, res){
+  Game.findById(req.params.id,function(err, game){
+    game.rounds.forEach(function(r){
+      r.pics.forEach(function(p){
+        if(p._id = req.body.picId){
+          picOfIntent = p
+        }
+      })
+    })
+  })
+  console.log(p)
+  res.json(p)
+})
+
 
 gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
