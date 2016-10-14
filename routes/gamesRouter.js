@@ -108,11 +108,22 @@ gamesRouter.get('/game/:id/members', function(req, res){
   })
 })
 
-gamesRouter.get('/game/:id/member/:member', function(req, res){
+// gamesRouter.get('/game/:id/member/:member', function(req, res){
+//   Game.findById(req.params.id, function(err, game){
+//     var currentRound = game.rounds[game.rounds.length-1]
+//     var picsThisRound = currentRound.pics
+//     res.json(picsThisRound)
+//   })
+// })
+
+gamesRouter.get('/game/:id/all', function(req, res){
   Game.findById(req.params.id, function(err, game){
-    var currentRound = game.rounds[game.rounds.length-1]
-    var picsThisRound = currentRound.pics
-    res.json(picsThisRound)
+    res.json(game)
+  })
+})
+gamesRouter.get('/game/:id/winners', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    res.render('winners', {game: game})
   })
 })
 
