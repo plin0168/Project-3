@@ -9,14 +9,15 @@
     </div>
   <%})%>
 </div>
-<%=game.users%>
+
 
 <script type="text/javascript">
   $('.addMember').on('click', function(){
+    console.log("your butt is clicked");
     var newMember = $('#newMember').val()
     $.ajax({
       method: 'PATCH',
-      url: '/game/<%=game.id%>/new_member',
+      url: '/game/<%=game.id%>/members',
       contentType: 'application/json',
       data: JSON.stringify({email: newMember})
     }).done(function(data){

@@ -106,7 +106,45 @@ gamesRouter.get('/game/:id/members', function(req, res){
   })
 })
 
+gamesRouter.patch('/game/:id/members', function(req,res){
+  Game.findById(req.params.id, function(err,game){
+    if (err) throw err
+    if(game){
+      User.findOne({"local.email": req.body.email}, function(err,user){
+        console.log(user);
+        if(!user){
+          res.json({message:"user not found"})
+        }
+        else{
+          game.users.push(user)
 
+          if(hasDuplicates(game.users)){
+            res.json({game: game, message:"user already been added"})
+          }
+          else{
+            game.save(function(err){
+              if(err) throw err
+              res.json(game)
+
+            })
+          }
+        }
+      })
+    }
+  })
+})
+
+function hasDuplicates(array) {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in valuesSoFar) {
+            return true;
+        }
+        valuesSoFar[value] = true;
+    }
+    return false;
+}
 
 
 module.exports = gamesRouter
