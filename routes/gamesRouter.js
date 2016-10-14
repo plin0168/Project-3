@@ -7,13 +7,6 @@ var
   User = require('../models/User.js'),
   randomWord = require('../words')
 
-/////////Garrett you can use this to create games////////
-// gamesRouter.route('/games/new')
-//   .get(gamesController.new)
-//   .post(gamesController.create)
-//
-// ////////Game view///////////
-//
 gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
 
@@ -55,13 +48,13 @@ gamesRouter.get('/game/:id', function(req, res){
     }
   })
 })
-// Why doesn't this work!!!!!
-// gamesRouter.delete('/game/:id', function(req, res){
-//   console.log(req.params.id);
-//   Game.findByIdAndRemove({req.params.id}, function(err, game){
-//     res.json(game)
-//   })
-// })
+
+gamesRouter.delete('/game/:id', function(req, res) {
+  Game.findByIdAndRemove(req.params.id, function(err, game) {
+    if(game) return res.json({message: "Game Deleted", success: true})
+    res.json({message: "No game to delete", success: false})
+  })
+})
 
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
