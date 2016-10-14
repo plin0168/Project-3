@@ -10,9 +10,14 @@
    <%#= game.rounds[game.rounds.length - 1].pics[0].url %>
 
   <div class="row text-center">
+
     <% game.users.forEach(function(el){ %>
       <div class="userName" data-id="<%= el._id %>">
-        <span class="glyphicon glyphicon-ok"></span><br>
+      <%picsThisRound.forEach(function(pic){%>
+        <%if(el._id.toString() == pic.user.toString()){%>
+          <span>Hello</span><br>
+        <%}%>
+      <%})%>
         <%= el.local.name %>
       </div>
   <% }) %>
@@ -88,6 +93,14 @@
       <div id="modalBottom"></div>
 
 <script type="text/javascript">
+
+$.ajax({
+  method: 'GET',
+  url: '/game/<%= game._id %>/member/<%=currentUser._id%>'
+}).done(function(pics){
+  console.log(pics)
+})
+
 $('#google').on('click', function(){
   var text = $('#google').text()
   $('#dropdownMenu1').text(text)
