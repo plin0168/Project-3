@@ -1,5 +1,5 @@
 <h1 class="text-center">Members</h1>
-
+<input id="newMember"type="text" name="name" value=""></input>
 <button class="addMember" type="button"> Add Members</button> <br>
 <button class="removeMember"type="button"> Kick Member Out</button> <br>
 <div class="text-center">
@@ -9,12 +9,18 @@
     </div>
   <%})%>
 </div>
+<%=game.users%>
 
 <script type="text/javascript">
   $('.addMember').on('click', function(){
-
+    var newMember = $('#newMember').val()
     $.ajax({
-
+      method: 'PATCH',
+      url: '/game/<%=game.id%>/new_member',
+      contentType: 'application/json',
+      data: JSON.stringify({email: newMember})
+    }).done(function(data){
+      console.log(data)
     })
   })
 
