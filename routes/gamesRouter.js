@@ -35,6 +35,8 @@ gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
     if(err) throw err;
     console.log(game)
+    var currentRound = game.rounds[game.rounds.length-1]
+    var picsThisRound = currentRound.pics
     // logic for stopping player for selecting multiple pictures
     var picId = []
     var pics = game.rounds[game.rounds.length-1].pics
@@ -45,10 +47,10 @@ gamesRouter.get('/game/:id', function(req, res){
     console.log("Console log below:");
     console.log(game.rounds[game.rounds.length-1].pics);
     if(req.user.id == game.rounds[game.rounds.length-1].picker._id){
-      res.render('game-picker', {game: game, picId: picId})
+      res.render('game-picker', {game: game, picId: picId, picsThisRound})
       console.log();
     } else{
-      res.render('game-player', {game: game, picId: picId})
+      res.render('game-player', {game: game, picId: picId, picsThisRound})
       console.log();
     }
   })
@@ -103,6 +105,25 @@ gamesRouter.get('/game/:id/members', function(req, res){
   Game.findById(req.params.id).populate("users").exec(function(err, game){
     if(err) return console.log(err)
     res.render('members-page', {game: game})
+  })
+})
+
+// gamesRouter.get('/game/:id/member/:member', function(req, res){
+//   Game.findById(req.params.id, function(err, game){
+//     var currentRound = game.rounds[game.rounds.length-1]
+//     var picsThisRound = currentRound.pics
+//     res.json(picsThisRound)
+//   })
+// })
+
+gamesRouter.get('/game/:id/all', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    res.json(game)
+  })
+})
+gamesRouter.get('/game/:id/winners', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    res.render('winners', {game: game})
   })
 })
 
