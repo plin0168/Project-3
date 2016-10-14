@@ -188,7 +188,7 @@ const randomWord =
 
   'Attraction',
 
-  'Surprise',
+  'Surprise'
     ]
 
 module.exports = randomWord

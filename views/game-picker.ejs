@@ -4,7 +4,6 @@
   <h4 class="text-center"><%=game.name%></h4>
   <h2 id="picker" class="text-center">You are the Picker</h2>
   <h1 class="text-center"><%=game.rounds[game.rounds.length - 1].word%></h1>
-  <%=picId%>
 
   <%# David's code to get photos%>
 
@@ -33,7 +32,6 @@
 
 <%# ajax pull for word generator api%>
 <script type="text/javascript">
-var socket = io()
 
 /////////////David's photo logic///////
 console.log('Players: <%=game.users.length-1%>')
@@ -41,7 +39,8 @@ console.log('pics uploaded: <%=game.rounds[game.rounds.length-1].pics.length%>')
 var players = <%=game.users.length-1%>
 var pics = <%=game.rounds[game.rounds.length-1].pics.length%>
 
-if(players => pics){
+
+if(pics >= players){
   console.log("players equals pics")
   $('#pickerPhotos').html("")
   $.ajax({

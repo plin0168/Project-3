@@ -9,8 +9,7 @@ body{
 }
 .userName{
   display: inline-block;
-  /*padding: 10px 50px;*/
-  width: 16.67%;
+  width: 16%;
 }
 .gameWord{
   padding: 100px 0px;
@@ -49,6 +48,9 @@ body{
 }
 .green{
   color: green;
+}
+.gameWord{
+  font-family: 'Bungee Inline', cursive;
 }
 
 
