@@ -7,13 +7,6 @@ var
   User = require('../models/User.js'),
   randomWord = require('../words')
 
-/////////Garrett you can use this to create games////////
-// gamesRouter.route('/games/new')
-//   .get(gamesController.new)
-//   .post(gamesController.create)
-//
-// ////////Game view///////////
-//
 gamesRouter.route('/game/:id/library')
   .get(gamesController.index)
 
@@ -35,6 +28,8 @@ gamesRouter.get('/game/:id', function(req, res){
   Game.findById(req.params.id).populate("users rounds.picker winners.user").exec(function(err, game){
     if(err) throw err;
     console.log(game)
+    var currentRound = game.rounds[game.rounds.length-1]
+    var picsThisRound = currentRound.pics
     // logic for stopping player for selecting multiple pictures
     var picId = []
     var pics = game.rounds[game.rounds.length-1].pics
@@ -45,21 +40,21 @@ gamesRouter.get('/game/:id', function(req, res){
     console.log("Console log below:");
     console.log(game.rounds[game.rounds.length-1].pics);
     if(req.user.id == game.rounds[game.rounds.length-1].picker._id){
-      res.render('game-picker', {game: game, picId: picId})
+      res.render('game-picker', {game: game, picId: picId, picsThisRound})
       console.log();
     } else{
-      res.render('game-player', {game: game, picId: picId})
+      res.render('game-player', {game: game, picId: picId, picsThisRound})
       console.log();
     }
   })
 })
-// Why doesn't this work!!!!!
-// gamesRouter.delete('/game/:id', function(req, res){
-//   console.log(req.params.id);
-//   Game.findByIdAndRemove({req.params.id}, function(err, game){
-//     res.json(game)
-//   })
-// })
+
+gamesRouter.delete('/game/:id', function(req, res) {
+  Game.findByIdAndRemove(req.params.id, function(err, game) {
+    if(game) return res.json({message: "Game Deleted", success: true})
+    res.json({message: "No game to delete", success: false})
+  })
+})
 
 
 gamesRouter.patch('/game/:id/new_photo', function(req, res){
@@ -131,6 +126,25 @@ gamesRouter.patch('/game/:id/members', function(req,res){
     }
   })
 })
+// gamesRouter.get('/game/:id/member/:member', function(req, res){
+//   Game.findById(req.params.id, function(err, game){
+//     var currentRound = game.rounds[game.rounds.length-1]
+//     var picsThisRound = currentRound.pics
+//     res.json(picsThisRound)
+//   })
+// })
+
+gamesRouter.get('/game/:id/all', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    res.json(game)
+  })
+})
+gamesRouter.get('/game/:id/winners', function(req, res){
+  Game.findById(req.params.id, function(err, game){
+    res.render('winners', {game: game})
+  })
+})
+
 
 // gamesRouter.patch('/game/:id/members', function(req,res){
 //   Game.findById(req.params.id, function(err,game){
