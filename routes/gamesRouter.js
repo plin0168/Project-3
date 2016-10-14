@@ -152,20 +152,23 @@ gamesRouter.get('/game/:id/winners', function(req, res){
 //     if(game){
 //       User.findOne({"local.email": req.body.email}, function(err,user){
 //         console.log(user);
-//         // if(!user){
-//         //   res.json({message:"user not found"})
-//         // }
-//         // else{
+//         if(!user){
+//           res.json({message:"user not found"})
+//         }
+//         else{
 //           game.users.removeMember(user)
 //             game.save(function(err){
 //               if(err) throw err
 //               res.json(game)
-//             // })
+//             })
 //         }
 //       })
 //     }
 //   })
 // })
+
+
+
 
 
 module.exports = gamesRouter
