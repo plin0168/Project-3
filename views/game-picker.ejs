@@ -32,7 +32,6 @@
 
 <%# ajax pull for word generator api%>
 <script type="text/javascript">
-var socket = io()
 
 /////////////David's photo logic///////
 console.log('Players: <%=game.users.length-1%>')
@@ -40,7 +39,7 @@ console.log('pics uploaded: <%=game.rounds[game.rounds.length-1].pics.length%>')
 var players = <%=game.users.length-1%>
 var pics = <%=game.rounds[game.rounds.length-1].pics.length%>
 
-if(players == pics){
+if(players => pics){
   console.log("players equals pics")
   $('#pickerPhotos').html("")
   $.ajax({
